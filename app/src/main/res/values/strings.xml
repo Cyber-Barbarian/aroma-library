@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">aroma-library</string>
+    <string name="contentEditTextAroma">Digite o aroma ou perfume</string>
+    <string name="header">Seja bem vindo ao Aroma Library</string>
+    <string name="aromaHeader">Aroma</string>
+    <string name="buttonSalvar">Salvar</string>
+    <string name="buttonLimpar">Limpar</string>
+    <string name="as_entradas_foram_apagadas">As entradas foram apagadas!</string>
+    <string name="digite_um_valor_valido">Digite um valor válido!</string>
+    <string name="aroma_cadastrado">Aroma Cadastrado: </string>
 </resources>
