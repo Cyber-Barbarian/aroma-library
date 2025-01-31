@@ -8,4 +8,6 @@
     <string name="as_entradas_foram_apagadas">As entradas foram apagadas!</string>
     <string name="digite_um_valor_valido">Digite um valor válido!</string>
     <string name="aroma_cadastrado">Aroma Cadastrado: </string>
+    <string name="checkboxFavoritos">Adicionar aos Favoritos</string>
+    <string name="tag_favoritos">Tag Favoritos</string>
 </resources>

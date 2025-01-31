@@ -11,8 +11,7 @@
         android:id="@+id/buttonLimpar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="10dp"
         android:onClick="limparCampos"
         android:text="@string/buttonLimpar"
         app:layout_constraintStart_toEndOf="@+id/buttonSalvar"
@@ -58,10 +57,18 @@
         android:id="@+id/buttonSalvar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="10dp"
         android:onClick="salvarValores"
         android:text="@string/buttonSalvar"
+        app:layout_constraintStart_toEndOf="@+id/checkBoxFavoritos"
+        app:layout_constraintTop_toBottomOf="@+id/editTextAroma" />
+
+    <CheckBox
+        android:id="@+id/checkBoxFavoritos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="@string/checkboxFavoritos"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextAroma" />
 
