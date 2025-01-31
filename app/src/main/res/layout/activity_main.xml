@@ -11,11 +11,11 @@
         android:id="@+id/buttonLimpar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="24dp"
         android:onClick="limparCampos"
         android:text="@string/buttonLimpar"
         app:layout_constraintStart_toEndOf="@+id/buttonSalvar"
-        app:layout_constraintTop_toBottomOf="@+id/editTextAroma" />
+        app:layout_constraintTop_toTopOf="@+id/buttonSalvar" />
 
     <TextView
         android:id="@+id/textViewheader"
@@ -57,11 +57,12 @@
         android:id="@+id/buttonSalvar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="160dp"
         android:onClick="salvarValores"
         android:text="@string/buttonSalvar"
-        app:layout_constraintStart_toEndOf="@+id/checkBoxFavoritos"
-        app:layout_constraintTop_toBottomOf="@+id/editTextAroma" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroupLongevidade" />
 
     <CheckBox
         android:id="@+id/checkBoxFavoritos"
@@ -71,5 +72,82 @@
         android:text="@string/checkboxFavoritos"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextAroma" />
+
+    <RadioGroup
+        android:id="@+id/radioGroupLongevidade"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewLongevidade">
+
+        <RadioButton
+            android:id="@+id/radioButtonCurta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/curta" />
+
+        <RadioButton
+            android:id="@+id/radioButtonMedia"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/media" />
+
+        <RadioButton
+            android:id="@+id/radioButtonLonga"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/longa" />
+
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/textViewLongevidade"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/longevidade"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/checkBoxFavoritos" />
+
+    <RadioGroup
+        android:id="@+id/radioGroupProjecao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toEndOf="@+id/textViewLongevidade"
+        app:layout_constraintTop_toBottomOf="@+id/textViewProjecao">
+
+        <RadioButton
+            android:id="@+id/radioButtonFraca"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/fraca" />
+
+        <RadioButton
+            android:id="@+id/radioButtonModerada"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/moderada" />
+
+        <RadioButton
+            android:id="@+id/radioButtonForte"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/forte" />
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/textViewProjecao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/projecao"
+        app:layout_constraintStart_toEndOf="@+id/textViewLongevidade"
+        app:layout_constraintTop_toBottomOf="@+id/checkBoxFavoritos" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

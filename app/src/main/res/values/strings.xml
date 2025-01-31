@@ -10,4 +10,14 @@
     <string name="aroma_cadastrado">Aroma Cadastrado: </string>
     <string name="checkboxFavoritos">Adicionar aos Favoritos</string>
     <string name="tag_favoritos">Tag Favoritos</string>
+    <string name="longevidade">Longevidade: </string>
+    <string name="curta">Curta</string>
+    <string name="media">Média</string>
+    <string name="longa">Longa</string>
+    <string name="faltou_preencher_a_longevidade_do_aroma">Faltou preencher a longevidade do aroma!</string>
+    <string name="projecao">"Projeção: "</string>
+    <string name="fraca">Fraca</string>
+    <string name="moderada">Moderada</string>
+    <string name="forte">Forte</string>
+    <string name="faltou_preencher_a_projecao_do_aroma">Faltou preencher a projeção do aroma!</string>
 </resources>
