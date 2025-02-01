@@ -14,7 +14,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.ArrayList;
 
 public class AromaLibraryActivity extends AppCompatActivity {
-
+//adicionar RadioGroup de genero: masculino, feminino, unissex
+//adicionar RadioGroup de período: noturno, diurno, qualquer hora
+//adicionar 3 EditText para a pirâmide olfativa (notas de saída, notas de corpo e notas de fundo)
     private EditText editTextAroma;
     private CheckBox checkBoxFavoritos;
     private RadioGroup radioGroupLongevidade, radioGroupProjecao;
