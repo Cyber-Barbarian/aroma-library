@@ -6,7 +6,7 @@
     <string name="buttonSalvar">Salvar</string>
     <string name="buttonLimpar">Limpar</string>
     <string name="as_entradas_foram_apagadas">As entradas foram apagadas!</string>
-    <string name="digite_um_valor_valido">Digite um valor válido!</string>
+    <string name="digite_um_valor_valido">Digite um nome válido para o aroma ou perfume!</string>
     <string name="aroma_cadastrado">Aroma Cadastrado: </string>
     <string name="checkboxFavoritos">Adicionar aos Favoritos</string>
     <string name="tag_favoritos">Tag Favoritos</string>
@@ -20,4 +20,35 @@
     <string name="moderada">Moderada</string>
     <string name="forte">Forte</string>
     <string name="faltou_preencher_a_projecao_do_aroma">Faltou preencher a projeção do aroma!</string>
+    <string name="tipo_de_aroma">Tipo de Aroma:</string>
+
+    <string name="amadeirado">1. Amadeirado: Notas de madeira como sândalo, cedro e vetiver.</string>
+    <string name="citrico">2. Cítrico: Notas frescas e vibrantes de frutas cítricas como limão, laranja e bergamota.</string>
+    <string name="floral">3. Floral: Notas de flores como rosa, jasmim, lírio e lavanda.</string>
+    <string name="oriental">4. Oriental: Notas quentes e exóticas como baunilha, âmbar e especiarias.</string>
+    <string name="frutado">5. Frutado: Notas doces e suculentas de frutas como maçã, pêssego e framboesa.</string>
+    <string name="aromatico">6. Aromático: Notas de ervas e especiarias como alecrim, lavanda e manjericão.</string>
+    <string name="aquatico">7. Aquático: Notas frescas e limpas que lembram o mar e a brisa.</string>
+    <string name="chipre">8. Chipre: Notas de musgo de carvalho, patchouli e bergamota.</string>
+    <string name="gourmand">9. Gourmand: Notas doces e comestíveis como chocolate, caramelo e café.</string>
+    <string name="fougere">10. Fougère: Notas de lavanda, musgo de carvalho e cumarina.</string>
+    <string name="especiado">11. Especiado: Notas de canela, cravo e noz-moscada.</string>
+    <string name="herbal">12. Herbal: Notas de hortelã, erva-doce e sálvia.</string>
+    <string name="verde">13. Verde: Notas de folhas verdes, grama cortada e chá verde.</string>
+    <string name="aldeido">14. Aldeído: Notas sintéticas com frescor metálico.</string>
+    <string name="animalistico">15. Animalístico: Notas de almíscar, civeta e castóreo.</string>
+    <string name="balsamico">16. Balsâmico: Notas de bálsamo de tolu, benjoim e mirra.</string>
+    <string name="couro">17. Couro: Notas de couro, tabaco e madeira queimada.</string>
+    <string name="ozonico">18. Ozônico: Notas de ar fresco e eletricidade.</string>
+    <string name="po">19. Pó: Notas de íris, violeta e heliotrópio.</string>
+    <string name="tabaco">20. Tabaco: Notas de folhas de tabaco, mel e especiarias.</string>
+    <string name="ambarado">21. Ambarado: Notas de âmbar, resinas e bálsamos.</string>
+    <string name="metalico">22. Metálico: Notas de metal com frescor cortante.</string>
+    <string name="incenso">23. Incenso: Notas de olíbano, mirra e resinas.</string>
+    <string name="terroso">24. Terroso: Notas de vetiver, patchouli e musgo.</string>
+    <string name="almiscarado">25. Almiscarado: Notas de almíscar, sensuais e quentes.</string>
+
+    <string name="faltou_selecionar_o_tipo_de_aroma">Faltou selecionar o tipo de aroma!</string>
+    <string name="spinner_aroma_hint">-- Selecione um tipo de aroma válido --</string>
+
 </resources>
