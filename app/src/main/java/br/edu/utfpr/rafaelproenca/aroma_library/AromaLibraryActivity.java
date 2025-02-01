@@ -31,44 +31,44 @@ public class AromaLibraryActivity extends AppCompatActivity {
         radioGroupProjecao = findViewById(R.id.radioGroupProjecao);
         spinnerTipoAroma = findViewById(R.id.spinnerTipoAroma);
 
-        popularSpinner();
+        //popularSpinner();
     }
     //fonte de dados
-    public void popularSpinner(){
-        ArrayList<String> listaAromas = new ArrayList<>();
-
-        listaAromas.add(getString(R.string.spinner_aroma_hint));
-        listaAromas.add(getString(R.string.amadeirado));
-        listaAromas.add(getString(R.string.citrico));
-        listaAromas.add(getString(R.string.floral));
-        listaAromas.add(getString(R.string.oriental));
-        listaAromas.add(getString(R.string.frutado));
-        listaAromas.add(getString(R.string.aromatico));
-        listaAromas.add(getString(R.string.aquatico));
-        listaAromas.add(getString(R.string.chipre));
-        listaAromas.add(getString(R.string.gourmand));
-        listaAromas.add(getString(R.string.fougere));
-        listaAromas.add(getString(R.string.especiado));
-        listaAromas.add(getString(R.string.herbal));
-        listaAromas.add(getString(R.string.verde));
-        listaAromas.add(getString(R.string.aldeido));
-        listaAromas.add(getString(R.string.animalistico));
-        listaAromas.add(getString(R.string.balsamico));
-        listaAromas.add(getString(R.string.couro));
-        listaAromas.add(getString(R.string.ozonico));
-        listaAromas.add(getString(R.string.po));
-        listaAromas.add(getString(R.string.tabaco));
-        listaAromas.add(getString(R.string.ambarado));
-        listaAromas.add(getString(R.string.metalico));
-        listaAromas.add(getString(R.string.incenso));
-        listaAromas.add(getString(R.string.terroso));
-        listaAromas.add(getString(R.string.almiscarado));
-
-        //renndetização
-        ArrayAdapter<String> adapterAroma = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listaAromas);
-
-        spinnerTipoAroma.setAdapter(adapterAroma);
-    }
+//    public void popularSpinner(){
+//        ArrayList<String> listaAromas = new ArrayList<>();
+//
+//        listaAromas.add(getString(R.string.spinner_aroma_hint));
+//        listaAromas.add(getString(R.string.amadeirado));
+//        listaAromas.add(getString(R.string.citrico));
+//        listaAromas.add(getString(R.string.floral));
+//        listaAromas.add(getString(R.string.oriental));
+//        listaAromas.add(getString(R.string.frutado));
+//        listaAromas.add(getString(R.string.aromatico));
+//        listaAromas.add(getString(R.string.aquatico));
+//        listaAromas.add(getString(R.string.chipre));
+//        listaAromas.add(getString(R.string.gourmand));
+//        listaAromas.add(getString(R.string.fougere));
+//        listaAromas.add(getString(R.string.especiado));
+//        listaAromas.add(getString(R.string.herbal));
+//        listaAromas.add(getString(R.string.verde));
+//        listaAromas.add(getString(R.string.aldeido));
+//        listaAromas.add(getString(R.string.animalistico));
+//        listaAromas.add(getString(R.string.balsamico));
+//        listaAromas.add(getString(R.string.couro));
+//        listaAromas.add(getString(R.string.ozonico));
+//        listaAromas.add(getString(R.string.po));
+//        listaAromas.add(getString(R.string.tabaco));
+//        listaAromas.add(getString(R.string.ambarado));
+//        listaAromas.add(getString(R.string.metalico));
+//        listaAromas.add(getString(R.string.incenso));
+//        listaAromas.add(getString(R.string.terroso));
+//        listaAromas.add(getString(R.string.almiscarado));
+//
+//        //renndetização
+//        ArrayAdapter<String> adapterAroma = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listaAromas);
+//
+//        spinnerTipoAroma.setAdapter(adapterAroma);
+//    }
 
     public void limparCampos(View view){
         editTextAroma.setText(null);

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="tipos_de_aromas">
+        <item>@string/spinner_aroma_hint</item>
+        <item>@string/amadeirado</item>
+        <item>@string/citrico</item>
+        <item>@string/floral</item>
+        <item>@string/oriental</item>
+        <item>@string/frutado</item>
+        <item>@string/aromatico</item>
+        <item>@string/aquatico</item>
+        <item>@string/chipre</item>
+        <item>@string/gourmand</item>
+        <item>@string/fougere</item>
+        <item>@string/especiado</item>
+        <item>@string/herbal</item>
+        <item>@string/verde</item>
+        <item>@string/aldeido</item>
+        <item>@string/animalistico</item>
+        <item>@string/balsamico</item>
+        <item>@string/couro</item>
+        <item>@string/ozonico</item>
+        <item>@string/po</item>
+        <item>@string/tabaco</item>
+        <item>@string/ambarado</item>
+        <item>@string/metalico</item>
+        <item>@string/incenso</item>
+        <item>@string/terroso</item>
+        <item>@string/almiscarado</item>
+    </string-array>
+    
+</resources>

@@ -22,6 +22,7 @@
     <string name="faltou_preencher_a_projecao_do_aroma">Faltou preencher a projeção do aroma!</string>
     <string name="tipo_de_aroma">Tipo de Aroma:</string>
 
+    <string name="spinner_aroma_hint">-- Selecione um tipo de aroma válido --</string>
     <string name="amadeirado">1. Amadeirado: Notas de madeira como sândalo, cedro e vetiver.</string>
     <string name="citrico">2. Cítrico: Notas frescas e vibrantes de frutas cítricas como limão, laranja e bergamota.</string>
     <string name="floral">3. Floral: Notas de flores como rosa, jasmim, lírio e lavanda.</string>
@@ -49,6 +50,6 @@
     <string name="almiscarado">25. Almiscarado: Notas de almíscar, sensuais e quentes.</string>
 
     <string name="faltou_selecionar_o_tipo_de_aroma">Faltou selecionar o tipo de aroma!</string>
-    <string name="spinner_aroma_hint">-- Selecione um tipo de aroma válido --</string>
+
 
 </resources>
