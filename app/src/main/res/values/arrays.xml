@@ -28,5 +28,21 @@
         <item>@string/terroso</item>
         <item>@string/almiscarado</item>
     </string-array>
+
+    <string-array name="indicacao_aromas">
+        <item>@string/spinner_indicacao_hint</item>
+        <item>@string/nourno_e_diurno_informal</item>
+        <item>@string/nourno_e_diurno_ar_livre</item>
+        <item>@string/nourno_e_diurno_formal</item>
+        <item>@string/nourno_e_diurno_geral</item>
+        <item>@string/noturno_informal</item>
+        <item>@string/noturno_ar_livre</item>
+        <item>@string/noturno_formal</item>
+        <item>@string/noturno_geral</item>
+        <item>@string/diurno_informal</item>
+        <item>@string/diurno_ar_livre</item>
+        <item>@string/diurno_formal</item>
+        <item>@string/diurno_geral</item>
+    </string-array>
     
 </resources>

@@ -7,6 +7,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,24 +15,32 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.ArrayList;
 
 public class AromaLibraryActivity extends AppCompatActivity {
-//adicionar RadioGroup de genero: masculino, feminino, unissex
-//adicionar RadioGroup de período: noturno, diurno, qualquer hora
+//adicionar RadioGroup de genero: masculino, feminino, unissex -- feito
+//adicionar spinner de período: noturno, diurno, qualquer hora...
 //adicionar 3 EditText para a pirâmide olfativa (notas de saída, notas de corpo e notas de fundo)
-    private EditText editTextAroma;
+    private TextView textViewheader;
+    private EditText editTextAroma, editTextTextNotasDeSaida, editTextTextNotasDeCorpo, editTextTextNotasDeFundo;
     private CheckBox checkBoxFavoritos;
-    private RadioGroup radioGroupLongevidade, radioGroupProjecao;
-    private Spinner spinnerTipoAroma;
+    private RadioGroup radioGroupLongevidade, radioGroupProjecao, radioGroupGenero;
+    private Spinner spinnerTipoAroma, spinnerIndicacao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        textViewheader = findViewById(R.id.textViewheader);
         editTextAroma = findViewById(R.id.editTextAroma);
+        editTextTextNotasDeSaida = findViewById(R.id.editTextTextNotasDeSaida);
+        editTextTextNotasDeCorpo = findViewById(R.id.editTextTextNotasDeCorpo);
+        editTextTextNotasDeFundo = findViewById(R.id.editTextTextNotasDeFundo);
         checkBoxFavoritos = findViewById(R.id.checkBoxFavoritos);
         radioGroupLongevidade = findViewById(R.id.radioGroupLongevidade);
         radioGroupProjecao = findViewById(R.id.radioGroupProjecao);
+        radioGroupGenero = findViewById(R.id.radioGroupGenero);
         spinnerTipoAroma = findViewById(R.id.spinnerTipoAroma);
+        spinnerIndicacao = findViewById(R.id.spinnerIndicacao);
+        textViewheader.requestFocus();
 
         //popularSpinner();
     }
@@ -74,10 +83,15 @@ public class AromaLibraryActivity extends AppCompatActivity {
 
     public void limparCampos(View view){
         editTextAroma.setText(null);
+        editTextTextNotasDeSaida.setText(null);
+        editTextTextNotasDeCorpo.setText(null);
+        editTextTextNotasDeFundo.setText(null);
         checkBoxFavoritos.setChecked(false);
         radioGroupLongevidade.clearCheck();
         radioGroupProjecao.clearCheck();
+        radioGroupGenero.clearCheck();
         spinnerTipoAroma.setSelection(0);
+        spinnerIndicacao.setSelection(0);
 
         editTextAroma.requestFocus();
         Toast.makeText(this, R.string.as_entradas_foram_apagadas, Toast.LENGTH_LONG).show();
@@ -85,6 +99,9 @@ public class AromaLibraryActivity extends AppCompatActivity {
 
     public void salvarValores(View view){
         String aroma = editTextAroma.getText().toString().trim();
+        String notaDeSaida = editTextTextNotasDeSaida.getText().toString().trim();
+        String notaDeBase = editTextTextNotasDeCorpo.getText().toString().trim();
+        String notaDeFundo = editTextTextNotasDeFundo.getText().toString().trim();
 
         //nome do aroma
         if (aroma == null || aroma.isEmpty()){
@@ -125,7 +142,29 @@ public class AromaLibraryActivity extends AppCompatActivity {
             return;
         }
 
-        //spinner
+        //gênero - RadioButton e RadioGroup
+        int radioButtonGeneroId = radioGroupGenero.getCheckedRadioButtonId();
+        String genero;
+        if (radioButtonGeneroId == R.id.radioButtonMasculino){
+            genero = getString(R.string.radioButtonMasculino);
+        } else if (radioButtonGeneroId == R.id.radioButtonFeminino){
+            genero = getString(R.string.radioButtonFeminino);
+        } else if (radioButtonGeneroId == R.id.radioButtonUnissex){
+            genero = getString(R.string.radioButtonUnissex);
+        } else {
+            Toast.makeText(this, R.string.faltou_preencher_o_genero_do_aroma, Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        //spinner Indicação Aroma
+        String indicacaoAroma = (String) spinnerIndicacao.getSelectedItem();
+
+        if (indicacaoAroma == null || indicacaoAroma == getString(R.string.spinner_indicacao_hint)){
+            Toast.makeText(this,getString(R.string.faltou_selecionar_a_indicacao_do_aroma), Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        //spinner Tipo Aroma
         String tipoAroma = (String) spinnerTipoAroma.getSelectedItem();
 
         if (tipoAroma == null || tipoAroma == getString(R.string.spinner_aroma_hint)){
@@ -133,12 +172,21 @@ public class AromaLibraryActivity extends AppCompatActivity {
             return;
         }
 
+        System.out.println(notaDeSaida);
+
+
+
         Toast.makeText(this,
                 getString(R.string.aroma_cadastrado) + aroma + "\n"+
                         (favorito? getString(R.string.tag_favoritos) + "\n" : "") +
                         getString(R.string.longevidade) + longevidade + "\n" +
-                         getString(R.string.projecao) + projecao + "\n"+
-                        getString(R.string.tipo_de_aroma) + tipoAroma
+                        getString(R.string.projecao) + projecao + "\n"+
+                        getString(R.string.textViewGenero) + genero + "\n"+
+                        getString(R.string.indicacao_do_aroma) + indicacaoAroma + "\n"+
+                        getString(R.string.tipo_de_aroma) + tipoAroma  + "\n" +
+                        (notaDeSaida != null && !notaDeSaida.isEmpty() ? getString(R.string.textViewNotasDeSaida) + notaDeSaida + "\n" : "") +
+                        (notaDeBase != null && !notaDeBase.isEmpty() ? getString(R.string.textViewNotasDeCorpo) + notaDeBase + "\n" : "") +
+                        (notaDeFundo != null && !notaDeFundo.isEmpty() ? getString(R.string.textViewNotasDeFundo) + notaDeFundo + "\n" : "")
                 ,Toast.LENGTH_LONG).show();
     }
 }

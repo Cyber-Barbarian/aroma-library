@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">aroma-library</string>
     <string name="contentEditTextAroma">Digite o aroma ou perfume</string>
+    <string name="contentEditTextNotas">Digite as notas aromáticas que detectou</string>
     <string name="header">Seja bem vindo ao Aroma Library</string>
     <string name="aromaHeader">Aroma</string>
     <string name="buttonSalvar">Salvar</string>
@@ -20,7 +21,7 @@
     <string name="moderada">Moderada</string>
     <string name="forte">Forte</string>
     <string name="faltou_preencher_a_projecao_do_aroma">Faltou preencher a projeção do aroma!</string>
-    <string name="tipo_de_aroma">Tipo de Aroma:</string>
+    <string name="tipo_de_aroma">Tipo de Aroma: </string>
 
     <string name="spinner_aroma_hint">-- Selecione um tipo de aroma válido --</string>
     <string name="amadeirado">1. Amadeirado: Notas de madeira como sândalo, cedro e vetiver.</string>
@@ -50,6 +51,32 @@
     <string name="almiscarado">25. Almiscarado: Notas de almíscar, sensuais e quentes.</string>
 
     <string name="faltou_selecionar_o_tipo_de_aroma">Faltou selecionar o tipo de aroma!</string>
+    <string name="textViewGenero">Gênero</string>
+    <string name="radioButtonMasculino">Masculino</string>
+    <string name="radioButtonFeminino">Feminino</string>
+    <string name="radioButtonUnissex">Unissex</string>
+    <string name="textViewIndicacao">Indicação</string>
 
+
+    <string name="spinner_indicacao_hint">-- Selecione uma indicação válida --</string>
+    <string name="diurno_geral">Uso diurno: geral.</string>
+    <string name="diurno_formal">Uso diurno: ambiente formal.</string>
+    <string name="diurno_ar_livre">Uso diurno: ar livre.</string>
+    <string name="diurno_informal">Uso diurno: eventos informais.</string>
+    <string name="noturno_geral">Uso noturno: geral.</string>
+    <string name="noturno_formal">Uso noturno: ambiente formal.</string>
+    <string name="noturno_ar_livre">Uso noturno: ar livre.</string>
+    <string name="noturno_informal">Uso noturno: eventos informais.</string>
+    <string name="nourno_e_diurno_geral">Uso nourno e diurno: geral.</string>
+    <string name="nourno_e_diurno_formal">Uso nourno e diurno: ambiente formal.</string>
+    <string name="nourno_e_diurno_ar_livre">Uso nourno e diurno: ar livre.</string>
+    <string name="nourno_e_diurno_informal">Uso nourno e diurno: eventos informais.</string>
+    <string name="textViewPiramideOlfativa">Pirâmide Olfativa - Campos Não Obrigatórios.</string>
+    <string name="textViewNotasDeSaida">Notas se Saída: </string>
+    <string name="textViewNotasDeCorpo">Notas de Corpo: </string>
+    <string name="textViewNotasDeFundo">Notas de Fundo: </string>
+    <string name="faltou_preencher_o_genero_do_aroma">Faltou preencher o gênero do aroma!</string>
+    <string name="faltou_selecionar_a_indicacao_do_aroma">Faltou selecionar a indicação do aroma!</string>
+    <string name="indicacao_do_aroma">Indicação do aroma: </string>
 
 </resources>

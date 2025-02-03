@@ -15,15 +15,53 @@
         android:layout_height="wrap_content">
 
 
-        <Button
-            android:id="@+id/buttonLimpar"
+        <EditText
+            android:id="@+id/editTextTextNotasDeFundo"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:ems="10"
+            android:hint="@string/contentEditTextNotas"
+            android:inputType="text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewNotasDeFundo" />
+
+        <TextView
+            android:id="@+id/textViewNotasDeFundo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:onClick="limparCampos"
-            android:text="@string/buttonLimpar"
-            app:layout_constraintStart_toEndOf="@+id/buttonSalvar"
-            app:layout_constraintTop_toTopOf="@+id/buttonSalvar" />
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/textViewNotasDeFundo"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextTextNotasDeCorpo" />
+
+        <EditText
+            android:id="@+id/editTextTextNotasDeCorpo"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:ems="10"
+            android:hint="@string/contentEditTextNotas"
+            android:inputType="text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewNotasDeCorpo" />
+
+        <TextView
+            android:id="@+id/textViewNotasDeCorpo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/textViewNotasDeCorpo"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextTextNotasDeSaida" />
 
         <TextView
             android:id="@+id/textViewheader"
@@ -61,17 +99,6 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/textViewAroma" />
-
-        <Button
-            android:id="@+id/buttonSalvar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="160dp"
-            android:onClick="salvarValores"
-            android:text="@string/buttonSalvar"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/radioGroupLongevidade" />
 
         <CheckBox
             android:id="@+id/checkBoxFavoritos"
@@ -166,24 +193,141 @@
             android:layout_width="0dp"
             android:layout_height="74dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
             android:entries="@array/tipos_de_aromas"
             android:spinnerMode="dialog"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textViewTipoDeAroma" />
+
+        <Button
+            android:id="@+id/buttonSalvar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="36dp"
+            android:layout_marginTop="508dp"
+            android:onClick="salvarValores"
+            android:text="@string/buttonSalvar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/radioGroupLongevidade" />
+
+        <Button
+            android:id="@+id/buttonLimpar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="48dp"
+            android:onClick="limparCampos"
+            android:text="@string/buttonLimpar"
+            app:layout_constraintStart_toEndOf="@+id/buttonSalvar"
+            app:layout_constraintTop_toTopOf="@+id/buttonSalvar" />
 
         <TextView
             android:id="@+id/textViewTipoDeAroma"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:labelFor="@id/spinnerTipoAroma"
             android:text="@string/tipo_de_aroma"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/spinnerIndicacao" />
+
+        <TextView
+            android:id="@+id/textViewGenero"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/textViewGenero"
+            app:layout_constraintStart_toEndOf="@+id/radioGroupProjecao"
+            app:layout_constraintTop_toBottomOf="@+id/checkBoxFavoritos" />
+
+        <RadioGroup
+            android:id="@+id/radioGroupGenero"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toEndOf="@+id/radioGroupProjecao"
+            app:layout_constraintTop_toBottomOf="@+id/textViewGenero">
+
+            <RadioButton
+                android:id="@+id/radioButtonMasculino"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/radioButtonMasculino" />
+
+            <RadioButton
+                android:id="@+id/radioButtonFeminino"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/radioButtonFeminino" />
+
+            <RadioButton
+                android:id="@+id/radioButtonUnissex"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/radioButtonUnissex" />
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/textViewIndicacao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/textViewIndicacao"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/radioGroupLongevidade" />
+
+        <Spinner
+            android:id="@+id/spinnerIndicacao"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:entries="@array/indicacao_aromas"
+            android:spinnerMode="dialog"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewIndicacao" />
+
+        <TextView
+            android:id="@+id/textViewPiramideOlfativa"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/textViewPiramideOlfativa"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/spinnerTipoAroma" />
+
+        <TextView
+            android:id="@+id/textViewNotasDeSaida"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/textViewNotasDeSaida"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewPiramideOlfativa" />
+
+        <EditText
+            android:id="@+id/editTextTextNotasDeSaida"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:ems="10"
+            android:hint="@string/contentEditTextNotas"
+            android:inputType="text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewNotasDeSaida" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
