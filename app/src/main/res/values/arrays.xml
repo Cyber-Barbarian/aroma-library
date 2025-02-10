@@ -45,11 +45,83 @@
         <item>@string/diurno_geral</item>
     </string-array>
 
-    <string-array name="aroma_name">
+    <string-array name="aromas_nome">
         <item>Chanel No. 5</item>
         <item>CK One</item>
         <item>Tom Ford Black Orchid</item>
         <item>Gucci Bloom</item>
-        <item>Yves Saint Laurent Black Opium</item>
+        <item>Polo Blue</item>
     </string-array>
+
+    <integer-array name="aromas_favorito">
+        <item>1</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>1</item>
+    </integer-array>
+    <integer-array name="aromas_longevidade">
+        <item>2</item>
+        <item>1</item>
+        <item>2</item>
+        <item>1</item>
+        <item>1</item>
+    </integer-array>
+    <integer-array name="aromas_projecao">
+        <item>1</item>
+        <item>0</item>
+        <item>2</item>
+        <item>1</item>
+        <item>1</item>
+    </integer-array>
+    <integer-array name="aromas_genero">
+        <item>1</item>
+        <item>2</item>
+        <item>1</item>
+        <item>1</item>
+        <item>0</item>
+    </integer-array>
+    <string-array name="aromas_indicacao">
+        <item>@string/noturno_geral</item>
+        <item>@string/diurno_geral</item>
+        <item>@string/noturno_formal</item>
+        <item>@string/diurno_ar_livre</item>
+        <item>@string/diurno_formal</item>
+    </string-array>
+    <string-array name="aromas_tipo_de_aroma">
+        <item>@string/amadeirado</item>
+        <item>@string/citrico</item>
+        <item>@string/especiado</item>
+        <item>@string/floral</item>
+        <item>@string/ozonico</item>
+    </string-array>
+
+    <string-array name="aromas_piramide_olfativa_saida">
+        <item>Aldeídos, Ylang Ylang, Néroli, Bergamota, Limão</item>
+        <item>Limão, Notas Verdes, Bergamota, Mandarina, Abacaxi, Cardamomo, Mamão Papaia</item>
+        <item>Trufa, Gardênia, Groselha Preta, Ylang Ylang, Jasmim, Bergamota, Mandarina, Limão de Amalfi</item>
+        <item>Néroli, Bergamota, Mandarina, Limão</item>
+        <item>Pepino, Melão, Mandarina</item>
+    </string-array>
+    <string-array name="aromas_piramide_olfativa_corpo">
+        <item>Íris, Jasmim, Rosa, Raíz de Orris, Lírio-do-Vale</item>
+        <item>Lírio-do-Vale, Jasmim, Violeta, Rosa, Noz-moscada, Raíz de Orris, Frésia</item>
+        <item>Orquídea, Especiarias, Gardênia, Notas Frutadas, Ylang Ylang, Jasmim, Lótus</item>
+        <item>Tuberosa, Jasmim, Flor de Laranjeira, Jasmim-da-Índia</item>
+        <item>Manjericão, Sálvia, Gerânio</item>
+    </string-array>
+    <string-array name="aromas_piramide_olfativa_fundo">
+        <item>Civeta, Almíscar, Âmbar, Sândalo, Musgo, Baunilha, Vetiver, Patchouli</item>
+        <item>Acorde Verde, Almíscar, Cedro, Sândalo, Chá Verde, Musgo de Carvalho, Âmbar</item>
+        <item>Chocolate mexicano, Patchouli, Baunilha, Incenso, Âmbar, Sândalo, Vetiver, Almíscar Branco</item>
+        <item>Almíscar, Sândalo</item>
+        <item>Camurça, Notas Amadeiradas, Almíscar</item>
+    </string-array>
+<!--
+    private String indicacao; //ENUM?
+    private String tipoDeAroma; //ENUM?
+    private String piramideOlfativaSaida;
+    private String piramideOlfativaCorpo;
+    private String piramideOlfativaFundo;
+-->
 </resources>

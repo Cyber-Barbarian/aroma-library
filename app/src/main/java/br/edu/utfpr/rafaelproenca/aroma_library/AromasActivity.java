@@ -1,6 +1,7 @@
 package br.edu.utfpr.rafaelproenca.aroma_library;
 
 import android.os.Bundle;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import androidx.activity.EdgeToEdge;
@@ -9,20 +10,70 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import br.edu.utfpr.rafaelproenca.aroma_library.enums.Genero;
+import br.edu.utfpr.rafaelproenca.aroma_library.enums.Longevidade;
+import br.edu.utfpr.rafaelproenca.aroma_library.enums.Projecao;
+
 public class AromasActivity extends AppCompatActivity {
 
     private ListView listViewAromas;
+    private List<Aroma> listaAromas;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_aromas);
-
-        listViewAromas =findViewById(R.id.listViewAromas);
-
+        listViewAromas = findViewById(R.id.listViewAromas);
         popularListaAromas();
     }
     private void popularListaAromas(){
-        //https://www.youtube.com/watch?v=N-fgOdNO-5Y 27:45
+        String[] aromas_nome = getResources().getStringArray(R.array.aromas_nome);
+        int[] aromas_favoritos = getResources().getIntArray(R.array.aromas_favorito);
+        int[] aromas_longevidade = getResources().getIntArray(R.array.aromas_longevidade);
+        int[] aromas_projecao = getResources().getIntArray(R.array.aromas_projecao);
+        int[] aromas_genero = getResources().getIntArray(R.array.aromas_genero);
+        String[] aromas_indicacao = getResources().getStringArray(R.array.aromas_indicacao);
+        String[] aromas_tipo_de_aroma = getResources().getStringArray(R.array.aromas_tipo_de_aroma);
+        String[] aromas_piramide_olfativa_saida = getResources().getStringArray(R.array.aromas_piramide_olfativa_saida);
+        String[] aromas_piramide_olfativa_corpo = getResources().getStringArray(R.array.aromas_piramide_olfativa_corpo);
+        String[] aromas_piramide_olfativa_fundo = getResources().getStringArray(R.array.aromas_piramide_olfativa_fundo);
+
+        listaAromas = new ArrayList<>();
+        Aroma aroma;
+        boolean favoritos;
+        Longevidade longevidade;
+        Longevidade[] longevidadeArray = Longevidade.values();
+        Projecao projecao;
+        Projecao[] projecaoArray = Projecao.values();
+        Genero genero;
+        Genero[] generoArray = Genero.values();
+
+        for (int cont = 0; cont < aromas_nome.length; cont ++){
+            favoritos = (aromas_favoritos[cont] == 1 ? true : false);
+            longevidade = longevidadeArray[aromas_longevidade[cont]];
+            projecao = projecaoArray[aromas_projecao[cont]];
+            genero = generoArray[aromas_genero[cont]];
+
+            aroma = new Aroma(aromas_nome[cont],
+                                favoritos,
+                                longevidade,
+                                projecao,
+                                genero,
+                                aromas_indicacao[cont],
+                                aromas_tipo_de_aroma[cont],
+                                aromas_piramide_olfativa_saida[cont],
+                                aromas_piramide_olfativa_corpo[cont],
+                                aromas_piramide_olfativa_fundo[cont]);
+
+            listaAromas.add(aroma);
+        }
+
+        ArrayAdapter<Aroma> adapter = new ArrayAdapter<>(this,
+                                                            android.R.layout.simple_list_item_1,
+                                                            listaAromas);
+        listViewAromas.setAdapter(adapter);
     }
 }

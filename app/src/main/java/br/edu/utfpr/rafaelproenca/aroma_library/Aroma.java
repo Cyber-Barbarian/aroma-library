@@ -108,4 +108,20 @@ public class Aroma {
     public void setPiramideOlfativaFundo(String piramideOlfativaFundo) {
         this.piramideOlfativaFundo = piramideOlfativaFundo;
     }
+
+    @Override
+    public String toString() {
+        return
+                nome + "\n" +
+                favoritos + "\n" +
+                longevidade + "\n" +
+                projecao + "\n" +
+                genero + "\n" +
+                indicacao + "\n" +
+                tipoDeAroma + "\n" +
+                piramideOlfativaSaida + "\n" +
+                piramideOlfativaCorpo + "\n" +
+                piramideOlfativaFundo
+                ;
+    }
 }
