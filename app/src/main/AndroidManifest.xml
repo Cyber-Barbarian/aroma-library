@@ -13,13 +13,24 @@
         android:theme="@style/Theme.Aromalibrary"
         tools:targetApi="31">
         <activity
-            android:name=".AromaLibraryActivity"
+            android:name=".AromasActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".AromaLibraryActivity"
+            android:exported="false">
+            <!--
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            -->
         </activity>
     </application>
 

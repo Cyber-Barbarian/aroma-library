@@ -44,5 +44,12 @@
         <item>@string/diurno_formal</item>
         <item>@string/diurno_geral</item>
     </string-array>
-    
+
+    <string-array name="aroma_name">
+        <item>Chanel No. 5</item>
+        <item>CK One</item>
+        <item>Tom Ford Black Orchid</item>
+        <item>Gucci Bloom</item>
+        <item>Yves Saint Laurent Black Opium</item>
+    </string-array>
 </resources>

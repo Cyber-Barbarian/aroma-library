@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">aroma-library</string>
+    <string name="app_name">Aroma Library</string>
     <string name="contentEditTextAroma">Digite o aroma ou perfume</string>
     <string name="contentEditTextNotas">Digite as notas aromáticas que detectou</string>
     <string name="header">Seja bem vindo ao Aroma Library</string>
