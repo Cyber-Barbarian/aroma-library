@@ -78,5 +78,11 @@
     <string name="faltou_preencher_o_genero_do_aroma">Faltou preencher o gênero do aroma!</string>
     <string name="faltou_selecionar_a_indicacao_do_aroma">Faltou selecionar a indicação do aroma!</string>
     <string name="indicacao_do_aroma">Indicação do aroma: </string>
+    <string name="nome_do_aroma">Nome do Aroma: </string>
+    <string name="favorito">Favorito: </string>
+    <string name="perfume_favorito">&#128153; Aroma entre os favoritos! &#128153;</string>
+    <string name="empty_message"></string>
+    <string name="foi_clicado">"Foi clicado!"</string>
+    <string name="separator">-------- AROMA --------</string>
 
 </resources>

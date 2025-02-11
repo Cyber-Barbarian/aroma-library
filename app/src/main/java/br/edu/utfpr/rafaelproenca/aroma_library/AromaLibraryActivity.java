@@ -2,7 +2,6 @@ package br.edu.utfpr.rafaelproenca.aroma_library;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioGroup;
@@ -11,8 +10,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-import java.util.ArrayList;
 
 public class AromaLibraryActivity extends AppCompatActivity {
     private TextView textViewheader;
@@ -78,7 +75,7 @@ public class AromaLibraryActivity extends AppCompatActivity {
 //        spinnerTipoAroma.setAdapter(adapterAroma);
 //    }
 
-    public void limparCampos(View view){
+    public void limparCampos(View view) {
         editTextAroma.setText(null);
         editTextTextNotasDeSaida.setText(null);
         editTextTextNotasDeCorpo.setText(null);
@@ -94,14 +91,14 @@ public class AromaLibraryActivity extends AppCompatActivity {
         Toast.makeText(this, R.string.as_entradas_foram_apagadas, Toast.LENGTH_LONG).show();
     }
 
-    public void salvarValores(View view){
+    public void salvarValores(View view) {
         String aroma = editTextAroma.getText().toString().trim();
         String notaDeSaida = editTextTextNotasDeSaida.getText().toString().trim();
         String notaDeBase = editTextTextNotasDeCorpo.getText().toString().trim();
         String notaDeFundo = editTextTextNotasDeFundo.getText().toString().trim();
 
         //nome do aroma
-        if (aroma == null || aroma.isEmpty()){
+        if (aroma == null || aroma.isEmpty()) {
             Toast.makeText(this, R.string.digite_um_valor_valido, Toast.LENGTH_LONG).show();
             editTextAroma.setText(null);
             editTextAroma.requestFocus();
@@ -114,11 +111,11 @@ public class AromaLibraryActivity extends AppCompatActivity {
         //longevidade - RadioButton e RadioGroup
         int radioButtonLongevidadeId = radioGroupLongevidade.getCheckedRadioButtonId();
         String longevidade;
-        if (radioButtonLongevidadeId == R.id.radioButtonCurta){
+        if (radioButtonLongevidadeId == R.id.radioButtonCurta) {
             longevidade = getString(R.string.curta);
-        } else if (radioButtonLongevidadeId == R.id.radioButtonMedia){
+        } else if (radioButtonLongevidadeId == R.id.radioButtonMedia) {
             longevidade = getString(R.string.media);
-        } else if (radioButtonLongevidadeId == R.id.radioButtonLonga){
+        } else if (radioButtonLongevidadeId == R.id.radioButtonLonga) {
             longevidade = getString(R.string.longa);
         } else {
             Toast.makeText(this, R.string.faltou_preencher_a_longevidade_do_aroma, Toast.LENGTH_LONG).show();
@@ -128,11 +125,11 @@ public class AromaLibraryActivity extends AppCompatActivity {
         //projeção - RadioButton e RadioGroup
         int radioButtonProjecaoId = radioGroupProjecao.getCheckedRadioButtonId();
         String projecao;
-        if (radioButtonProjecaoId == R.id.radioButtonFraca){
+        if (radioButtonProjecaoId == R.id.radioButtonFraca) {
             projecao = getString(R.string.fraca);
-        } else if (radioButtonProjecaoId == R.id.radioButtonModerada){
+        } else if (radioButtonProjecaoId == R.id.radioButtonModerada) {
             projecao = getString(R.string.moderada);
-        } else if (radioButtonProjecaoId == R.id.radioButtonForte){
+        } else if (radioButtonProjecaoId == R.id.radioButtonForte) {
             projecao = getString(R.string.forte);
         } else {
             Toast.makeText(this, R.string.faltou_preencher_a_projecao_do_aroma, Toast.LENGTH_LONG).show();
@@ -142,11 +139,11 @@ public class AromaLibraryActivity extends AppCompatActivity {
         //gênero - RadioButton e RadioGroup
         int radioButtonGeneroId = radioGroupGenero.getCheckedRadioButtonId();
         String genero;
-        if (radioButtonGeneroId == R.id.radioButtonMasculino){
+        if (radioButtonGeneroId == R.id.radioButtonMasculino) {
             genero = getString(R.string.radioButtonMasculino);
-        } else if (radioButtonGeneroId == R.id.radioButtonFeminino){
+        } else if (radioButtonGeneroId == R.id.radioButtonFeminino) {
             genero = getString(R.string.radioButtonFeminino);
-        } else if (radioButtonGeneroId == R.id.radioButtonUnissex){
+        } else if (radioButtonGeneroId == R.id.radioButtonUnissex) {
             genero = getString(R.string.radioButtonUnissex);
         } else {
             Toast.makeText(this, R.string.faltou_preencher_o_genero_do_aroma, Toast.LENGTH_LONG).show();
@@ -156,34 +153,33 @@ public class AromaLibraryActivity extends AppCompatActivity {
         //spinner Indicação Aroma
         String indicacaoAroma = (String) spinnerIndicacao.getSelectedItem();
 
-        if (indicacaoAroma == null || indicacaoAroma == getString(R.string.spinner_indicacao_hint)){
-            Toast.makeText(this,getString(R.string.faltou_selecionar_a_indicacao_do_aroma), Toast.LENGTH_LONG).show();
+        if (indicacaoAroma == null || indicacaoAroma == getString(R.string.spinner_indicacao_hint)) {
+            Toast.makeText(this, getString(R.string.faltou_selecionar_a_indicacao_do_aroma), Toast.LENGTH_LONG).show();
             return;
         }
 
         //spinner Tipo Aroma
         String tipoAroma = (String) spinnerTipoAroma.getSelectedItem();
 
-        if (tipoAroma == null || tipoAroma == getString(R.string.spinner_aroma_hint)){
-            Toast.makeText(this,getString(R.string.faltou_selecionar_o_tipo_de_aroma), Toast.LENGTH_LONG).show();
+        if (tipoAroma == null || tipoAroma == getString(R.string.spinner_aroma_hint)) {
+            Toast.makeText(this, getString(R.string.faltou_selecionar_o_tipo_de_aroma), Toast.LENGTH_LONG).show();
             return;
         }
 
         System.out.println(notaDeSaida);
 
 
-
         Toast.makeText(this,
-                getString(R.string.aroma_cadastrado) + aroma + "\n"+
-                        (favorito? getString(R.string.tag_favoritos) + "\n" : "") +
+                getString(R.string.aroma_cadastrado) + aroma + "\n" +
+                        (favorito ? getString(R.string.tag_favoritos) + "\n" : "") +
                         getString(R.string.longevidade) + longevidade + "\n" +
-                        getString(R.string.projecao) + projecao + "\n"+
-                        getString(R.string.textViewGenero) + genero + "\n"+
-                        getString(R.string.indicacao_do_aroma) + indicacaoAroma + "\n"+
-                        getString(R.string.tipo_de_aroma) + tipoAroma  + "\n" +
+                        getString(R.string.projecao) + projecao + "\n" +
+                        getString(R.string.textViewGenero) + genero + "\n" +
+                        getString(R.string.indicacao_do_aroma) + indicacaoAroma + "\n" +
+                        getString(R.string.tipo_de_aroma) + tipoAroma + "\n" +
                         (notaDeSaida != null && !notaDeSaida.isEmpty() ? getString(R.string.textViewNotasDeSaida) + notaDeSaida + "\n" : "") +
                         (notaDeBase != null && !notaDeBase.isEmpty() ? getString(R.string.textViewNotasDeCorpo) + notaDeBase + "\n" : "") +
                         (notaDeFundo != null && !notaDeFundo.isEmpty() ? getString(R.string.textViewNotasDeFundo) + notaDeFundo + "\n" : "")
-                ,Toast.LENGTH_LONG).show();
+                , Toast.LENGTH_LONG).show();
     }
 }

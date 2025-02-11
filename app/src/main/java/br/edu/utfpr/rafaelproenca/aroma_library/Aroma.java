@@ -10,8 +10,8 @@ public class Aroma {
     private Longevidade longevidade;
     private Projecao projecao;
     private Genero genero;
-    private String indicacao; //ENUM?
-    private String tipoDeAroma; //ENUM?
+    private String indicacao;
+    private String tipoDeAroma;
     private String piramideOlfativaSaida;
     private String piramideOlfativaCorpo;
     private String piramideOlfativaFundo;
@@ -113,15 +113,15 @@ public class Aroma {
     public String toString() {
         return
                 nome + "\n" +
-                favoritos + "\n" +
-                longevidade + "\n" +
-                projecao + "\n" +
-                genero + "\n" +
-                indicacao + "\n" +
-                tipoDeAroma + "\n" +
-                piramideOlfativaSaida + "\n" +
-                piramideOlfativaCorpo + "\n" +
-                piramideOlfativaFundo
+                        favoritos + "\n" +
+                        longevidade + "\n" +
+                        projecao + "\n" +
+                        genero + "\n" +
+                        indicacao + "\n" +
+                        tipoDeAroma + "\n" +
+                        piramideOlfativaSaida + "\n" +
+                        piramideOlfativaCorpo + "\n" +
+                        piramideOlfativaFundo
                 ;
     }
 }

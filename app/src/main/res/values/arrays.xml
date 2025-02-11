@@ -47,9 +47,16 @@
 
     <string-array name="aromas_nome">
         <item>Chanel No. 5</item>
-        <item>CK One</item>
-        <item>Tom Ford Black Orchid</item>
-        <item>Gucci Bloom</item>
+        <item>Dior Sauvage</item>
+        <item>Lancôme La Vie Est Belle</item>
+        <item>Creed Aventus</item>
+        <item>Yves Saint Laurent Black Opium</item>
+        <item>Tom Ford Oud Wood</item>
+        <item>Giorgio Armani Acqua di Giò</item>
+        <item>Jean Paul Gaultier Le Male</item>
+        <item>Hermès Terre d\'Hermès</item>
+        <item>Dolce &amp; Gabbana Light Blue</item>
+        <item>Paco Rabanne 1 Million</item>
         <item>Polo Blue</item>
     </string-array>
 
@@ -58,70 +65,270 @@
         <item>0</item>
         <item>0</item>
         <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
         <item>1</item>
     </integer-array>
     <integer-array name="aromas_longevidade">
         <item>2</item>
-        <item>1</item>
+        <item>2</item>
+        <item>2</item>
+        <item>2</item>
         <item>2</item>
         <item>1</item>
         <item>1</item>
+        <item>2</item>
+        <item>2</item>
+        <item>1</item>
+        <item>2</item>
+        <item>2</item>
     </integer-array>
     <integer-array name="aromas_projecao">
-        <item>1</item>
-        <item>0</item>
+        <item>2</item>
+        <item>2</item>
+        <item>2</item>
+        <item>2</item>
         <item>2</item>
         <item>1</item>
         <item>1</item>
+        <item>2</item>
+        <item>1</item>
+        <item>1</item>
+        <item>2</item>
+        <item>2</item>
     </integer-array>
     <integer-array name="aromas_genero">
         <item>1</item>
+        <item>0</item>
+        <item>1</item>
+        <item>0</item>
+        <item>1</item>
         <item>2</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
         <item>1</item>
-        <item>1</item>
+        <item>0</item>
         <item>0</item>
     </integer-array>
     <string-array name="aromas_indicacao">
-        <item>@string/noturno_geral</item>
-        <item>@string/diurno_geral</item>
         <item>@string/noturno_formal</item>
+        <item>@string/nourno_e_diurno_geral</item>
+        <item>@string/noturno_geral</item>
+        <item>@string/noturno_formal</item>
+        <item>@string/noturno_geral</item>
+        <item>@string/noturno_geral</item>
         <item>@string/diurno_ar_livre</item>
-        <item>@string/diurno_formal</item>
+        <item>@string/noturno_geral</item>
+        <item>@string/nourno_e_diurno_geral</item>
+        <item>@string/diurno_ar_livre</item>
+        <item>@string/noturno_geral</item>
+        <item>@string/diurno_ar_livre</item>
     </string-array>
     <string-array name="aromas_tipo_de_aroma">
-        <item>@string/amadeirado</item>
-        <item>@string/citrico</item>
-        <item>@string/especiado</item>
         <item>@string/floral</item>
-        <item>@string/ozonico</item>
+        <item>@string/aromatico</item>
+        <item>@string/frutado</item>
+        <item>@string/chipre</item>
+        <item>@string/oriental</item>
+        <item>@string/especiado</item>
+        <item>@string/aquatico</item>
+        <item>@string/fougere</item>
+        <item>@string/terroso</item>
+        <item>@string/frutado</item>
+        <item>@string/especiado</item>
+        <item>@string/aromatico</item>
     </string-array>
 
     <string-array name="aromas_piramide_olfativa_saida">
-        <item>Aldeídos, Ylang Ylang, Néroli, Bergamota, Limão</item>
-        <item>Limão, Notas Verdes, Bergamota, Mandarina, Abacaxi, Cardamomo, Mamão Papaia</item>
-        <item>Trufa, Gardênia, Groselha Preta, Ylang Ylang, Jasmim, Bergamota, Mandarina, Limão de Amalfi</item>
-        <item>Néroli, Bergamota, Mandarina, Limão</item>
-        <item>Pepino, Melão, Mandarina</item>
+        <item>Aldeídos, Néroli, Ylang-Ylang</item>
+        <item>Bergamota</item>
+        <item>Pera, Cassis</item>
+        <item>Abacaxi, Bergamota</item>
+        <item>Pimenta Rosa, Flor de Laranjeira</item>
+        <item>Cardamomo, Pimenta</item>
+        <item>Limão, Bergamota</item>
+        <item>Hortelã, Lavanda</item>
+        <item>Laranja, Toranja</item>
+        <item>Limão, Maçã</item>
+        <item>Toranja, Menta</item>
+        <item>Melão, Pepino, Mandarina</item>
     </string-array>
     <string-array name="aromas_piramide_olfativa_corpo">
-        <item>Íris, Jasmim, Rosa, Raíz de Orris, Lírio-do-Vale</item>
-        <item>Lírio-do-Vale, Jasmim, Violeta, Rosa, Noz-moscada, Raíz de Orris, Frésia</item>
-        <item>Orquídea, Especiarias, Gardênia, Notas Frutadas, Ylang Ylang, Jasmim, Lótus</item>
-        <item>Tuberosa, Jasmim, Flor de Laranjeira, Jasmim-da-Índia</item>
-        <item>Manjericão, Sálvia, Gerânio</item>
+        <item>Jasmim, Rosa</item>
+        <item>Pimenta Sichuan, Lavanda</item>
+        <item>Íris, Jasmim</item>
+        <item>Bétula, Jasmim</item>
+        <item>Café, Jasmim</item>
+        <item>Oud, Sândalo</item>
+        <item>Jasmim, Calone</item>
+        <item>Canela, Flor de Laranjeira</item>
+        <item>Pimenta, Pelargonium</item>
+        <item>Jasmim, Rosa Branca</item>
+        <item>Rosa, Canela</item>
+        <item>Manjericão, Verbena</item>
     </string-array>
     <string-array name="aromas_piramide_olfativa_fundo">
-        <item>Civeta, Almíscar, Âmbar, Sândalo, Musgo, Baunilha, Vetiver, Patchouli</item>
-        <item>Acorde Verde, Almíscar, Cedro, Sândalo, Chá Verde, Musgo de Carvalho, Âmbar</item>
-        <item>Chocolate mexicano, Patchouli, Baunilha, Incenso, Âmbar, Sândalo, Vetiver, Almíscar Branco</item>
-        <item>Almíscar, Sândalo</item>
-        <item>Camurça, Notas Amadeiradas, Almíscar</item>
+        <item>Sândalo, Baunilha</item>
+        <item>Ambroxan, Cedro</item>
+        <item>Patchouli, Baunilha</item>
+        <item>Musgo de Carvalho, Baunilha</item>
+        <item>Baunilha, Cedro</item>
+        <item>Baunilha, Âmbar</item>
+        <item>Cedro, Almíscar</item>
+        <item>Baunilha, Sândalo</item>
+        <item>Vetiver, Cedro</item>
+        <item>Cedro, Âmbar</item>
+        <item>Couro, Âmbar</item>
+        <item>Camurça, Lavada, Almíscar</item>
     </string-array>
-<!--
-    private String indicacao; //ENUM?
-    private String tipoDeAroma; //ENUM?
-    private String piramideOlfativaSaida;
-    private String piramideOlfativaCorpo;
-    private String piramideOlfativaFundo;
--->
+    <!--
+    Chanel No. 5
+
+    Favoritos: 1
+    Longevidade: 2
+    Projeção: 2
+    Gênero: 1
+    Indicação: @string/noturno_formal
+    Tipo de Aroma: @string/floral
+    Pirâmide Olfativa Saída: Aldeídos, Néroli, Ylang-Ylang
+    Pirâmide Olfativa Corpo: Jasmim, Rosa
+    Pirâmide Olfativa Fundo: Sândalo, Baunilha
+
+    Dior Sauvage
+
+    Favoritos: 0
+    Longevidade: 2
+    Projeção: 2
+    Gênero: 0
+    Indicação: @string/nourno_e_diurno_geral
+    Tipo de Aroma: @string/aromatico
+    Pirâmide Olfativa Saída: Bergamota
+    Pirâmide Olfativa Corpo: Pimenta Sichuan, Lavanda
+    Pirâmide Olfativa Fundo: Ambroxan, Cedro
+
+    Lancôme La Vie Est Belle
+
+    Favoritos: 0
+    Longevidade: 2
+    Projeção: 2
+    Gênero: 1
+    Indicação: @string/noturno_geral
+    Tipo de Aroma: @string/frutado
+    Pirâmide Olfativa Saída: Pera, Cassis
+    Pirâmide Olfativa Corpo: Íris, Jasmim
+    Pirâmide Olfativa Fundo: Patchouli, Baunilha
+
+    Creed Aventus
+
+    Favoritos: 0
+    Longevidade: 2
+    Projeção: 2
+    Gênero: 0
+    Indicação: @string/noturno_formal
+    Tipo de Aroma: @string/chipre
+    Pirâmide Olfativa Saída: Abacaxi, Bergamota
+    Pirâmide Olfativa Corpo: Bétula, Jasmim
+    Pirâmide Olfativa Fundo: Musgo de Carvalho, Baunilha
+
+    Yves Saint Laurent Black Opium
+
+    Favoritos: 0
+    Longevidade: 2
+    Projeção: 2
+    Gênero: 1
+    Indicação: @string/noturno_geral
+    Tipo de Aroma: @string/oriental
+    Pirâmide Olfativa Saída: Pimenta Rosa, Flor de Laranjeira
+    Pirâmide Olfativa Corpo: Café, Jasmim
+    Pirâmide Olfativa Fundo: Baunilha, Cedro
+
+    Tom Ford Oud Wood
+
+    Favoritos: 0
+    Longevidade: 1
+    Projeção: 1
+    Gênero: 2
+    Indicação: @string/noturno_geral
+    Tipo de Aroma: @string/especiado
+    Pirâmide Olfativa Saída: Cardamomo, Pimenta
+    Pirâmide Olfativa Corpo: Oud, Sândalo
+    Pirâmide Olfativa Fundo: Baunilha, Âmbar
+
+    Giorgio Armani Acqua di Giò
+
+    Favoritos: 0
+    Longevidade: 1
+    Projeção: 1
+    Gênero: 0
+    Indicação: @string/diurno_ar_livre
+    Tipo de Aroma: @string/aquatico
+    Pirâmide Olfativa Saída: Limão, Bergamota
+    Pirâmide Olfativa Corpo: Jasmim, Calone
+    Pirâmide Olfativa Fundo: Cedro, Almíscar
+
+    Jean Paul Gaultier Le Male
+
+    Favoritos: 0
+    Longevidade: 2
+    Projeção: 2
+    Gênero: 0
+    Indicação: @string/noturno_geral
+    Tipo de Aroma: @string/fougere
+    Pirâmide Olfativa Saída: Hortelã, Lavanda
+    Pirâmide Olfativa Corpo: Canela, Flor de Laranjeira
+    Pirâmide Olfativa Fundo: Baunilha, Sândalo
+    Hermès Terre d'Hermès
+
+    Favoritos: 0
+    Longevidade: 2
+    Projeção: 1
+    Gênero: 0
+    Indicação: @string/nourno_e_diurno_geral
+    Tipo de Aroma: @string/terroso
+    Pirâmide Olfativa Saída: Laranja, Toranja
+    Pirâmide Olfativa Corpo: Pimenta, Pelargonium
+    Pirâmide Olfativa Fundo: Vetiver, Cedro
+
+    Dolce & Gabbana Light Blue
+
+    Favoritos: 0
+    Longevidade: 1
+    Projeção: 1
+    Gênero: 1
+    Indicação: @string/diurno_ar_livre
+    Tipo de Aroma: @string/frutado
+    Pirâmide Olfativa Saída: Limão, Maçã
+    Pirâmide Olfativa Corpo: Jasmim, Rosa Branca
+    Pirâmide Olfativa Fundo: Cedro, Âmbar
+
+    Paco Rabanne 1 Million
+
+    Favoritos: 0
+    Longevidade: 2
+    Projeção: 2
+    Gênero: 0
+    Indicação: @string/noturno_geral
+    Tipo de Aroma: @string/especiado
+    Pirâmide Olfativa Saída: Toranja, Menta
+    Pirâmide Olfativa Corpo: Rosa, Canela
+    Pirâmide Olfativa Fundo: Couro, Âmbar
+
+    Polo Blue
+
+    Favoritos: 1
+    Longevidade: 2
+    Projeção: 2
+    Gênero: 0
+    Indicação: @string/diurno_ar_livre
+    Tipo de Aroma: @string/aromatico
+    Pirâmide Olfativa Saída: Melão, Pepino, Mandarina
+    Pirâmide Olfativa Corpo: Manjericão, Verbena
+    Pirâmide Olfativa Fundo: Camurça Lavada, Almíscar
+    -->
 </resources>
