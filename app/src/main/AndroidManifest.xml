@@ -13,6 +13,9 @@
         android:theme="@style/Base.Theme.Aromalibrary"
         tools:targetApi="31">
         <activity
+            android:name=".SobreActivity"
+            android:exported="false" />
+        <activity
             android:name=".AromasActivity"
             android:exported="true">
             <intent-filter>
@@ -24,6 +27,7 @@
         <activity
             android:name=".AromaLibraryActivity"
             android:exported="false">
+
             <!--
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

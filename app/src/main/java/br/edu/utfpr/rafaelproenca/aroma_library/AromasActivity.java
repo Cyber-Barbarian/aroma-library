@@ -1,5 +1,6 @@
 package br.edu.utfpr.rafaelproenca.aroma_library;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -26,6 +27,8 @@ public class AromasActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_aromas);
+
+        setTitle(getString(R.string.cadastro_de_aromas));
         listViewAromas = findViewById(R.id.listViewAromas);
         listViewAromas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -95,4 +98,12 @@ public class AromasActivity extends AppCompatActivity {
         listViewAromas.setAdapter(adapterAroma);
 
     }
+    public void abrirSobre(View view){
+        Intent intentAbertura = new Intent(this, SobreActivity.class);
+        //se quiser passar parâmetros
+        //intentAbertura.putExtra()
+        startActivity(intentAbertura);
+
+    }
+
 }

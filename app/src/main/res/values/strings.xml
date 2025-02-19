@@ -84,5 +84,14 @@
     <string name="empty_message"></string>
     <string name="foi_clicado">"Foi clicado!"</string>
     <string name="separator">-------- AROMA --------</string>
+    <string name="logo_da_utfpr">Logo da UTFPR</string>
+    <string name="descricao_aplicativo">Descrição: Aplicativo para catálogo de perfumes e aromas.</string>
+    <string name="autoria_aplicativo">Autoria: Rafael Rocha da Silva Proença.</string>
+    <string name="instituica_de_ensino">Instituição de Ensino: UTFPR - Universidade Tecnológica Federal do Paraná.</string>
+    <string name="curso_aluno">Curso: Pós graduação em desenvolvimento Java.</string>
+    <string name="disciplina_aluno">Disciplina: Desenvolvimento Java Para Dispositivos Móveis 2025.</string>
+    <string name="email_aluno">E-mail: rafaelproenca@alunos.utfpr.edu.br</string>
+    <string name="sobre">Sobre</string>
+    <string name="cadastro_de_aromas">Cadastro de Aromas</string>
 
 </resources>
