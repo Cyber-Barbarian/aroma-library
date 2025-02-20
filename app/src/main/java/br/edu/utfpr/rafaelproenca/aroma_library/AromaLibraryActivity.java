@@ -1,5 +1,6 @@
 package br.edu.utfpr.rafaelproenca.aroma_library;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.CheckBox;
@@ -12,6 +13,17 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class AromaLibraryActivity extends AppCompatActivity {
+    public static final String KEY_AROMA = "KEY_AROMA";
+    public static final String KEY_FAVORITO = "KEY_FAVORITO";
+
+    public static final String KEY_LONGEVIDADE = "KEY_LONGEVIDADE";
+    public static final String KEY_PROJECAO = "KEY_PROJECAO";
+    public static final String KEY_GENERO = "KEY_GENERO";
+    public static final String KEY_INDICACAO = "KEY_INDICACAO";
+    public static final String KEY_TIPO = "KEY_TIPO";
+    public static final String KEY_SAIDA = "KEY_SAIDA";
+    public static final String KEY_BASE = "KEY_BASE";
+    public static final String KEY_FUNDO = "KEY_FUNDO";
     private TextView textViewheader;
     private EditText editTextAroma, editTextTextNotasDeSaida, editTextTextNotasDeCorpo, editTextTextNotasDeFundo;
     private CheckBox checkBoxFavoritos;
@@ -166,20 +178,37 @@ public class AromaLibraryActivity extends AppCompatActivity {
             return;
         }
 
-        System.out.println(notaDeSaida);
+        Intent intenResposta = new Intent();
+
+        intenResposta.putExtra(KEY_AROMA,aroma);
+        intenResposta.putExtra(KEY_FAVORITO,favorito);
+        intenResposta.putExtra(KEY_LONGEVIDADE,longevidade);
+        intenResposta.putExtra(KEY_PROJECAO,projecao);
+        intenResposta.putExtra(KEY_GENERO,genero);
+        intenResposta.putExtra(KEY_INDICACAO,indicacaoAroma);
+        intenResposta.putExtra(KEY_TIPO,tipoAroma);
+        intenResposta.putExtra(KEY_SAIDA,notaDeSaida);
+        intenResposta.putExtra(KEY_BASE,notaDeBase);
+        intenResposta.putExtra(KEY_FUNDO,notaDeFundo);
+
+        setResult(AromaLibraryActivity.RESULT_OK, intenResposta);
+
+        finish();
 
 
-        Toast.makeText(this,
-                getString(R.string.aroma_cadastrado) + aroma + "\n" +
-                        (favorito ? getString(R.string.tag_favoritos) + "\n" : "") +
-                        getString(R.string.longevidade) + longevidade + "\n" +
-                        getString(R.string.projecao) + projecao + "\n" +
-                        getString(R.string.textViewGenero) + genero + "\n" +
-                        getString(R.string.indicacao_do_aroma) + indicacaoAroma + "\n" +
-                        getString(R.string.tipo_de_aroma) + tipoAroma + "\n" +
-                        (notaDeSaida != null && !notaDeSaida.isEmpty() ? getString(R.string.textViewNotasDeSaida) + notaDeSaida + "\n" : "") +
-                        (notaDeBase != null && !notaDeBase.isEmpty() ? getString(R.string.textViewNotasDeCorpo) + notaDeBase + "\n" : "") +
-                        (notaDeFundo != null && !notaDeFundo.isEmpty() ? getString(R.string.textViewNotasDeFundo) + notaDeFundo + "\n" : "")
-                , Toast.LENGTH_LONG).show();
+
+
+//        Toast.makeText(this,
+//                getString(R.string.aroma_cadastrado) + aroma + "\n" +
+//                        (favorito ? getString(R.string.tag_favoritos) + "\n" : "") +
+//                        getString(R.string.longevidade) + longevidade + "\n" +
+//                        getString(R.string.projecao) + projecao + "\n" +
+//                        getString(R.string.textViewGenero) + genero + "\n" +
+//                        getString(R.string.indicacao_do_aroma) + indicacaoAroma + "\n" +
+//                        getString(R.string.tipo_de_aroma) + tipoAroma + "\n" +
+//                        (notaDeSaida != null && !notaDeSaida.isEmpty() ? getString(R.string.textViewNotasDeSaida) + notaDeSaida + "\n" : "") +
+//                        (notaDeBase != null && !notaDeBase.isEmpty() ? getString(R.string.textViewNotasDeCorpo) + notaDeBase + "\n" : "") +
+//                        (notaDeFundo != null && !notaDeFundo.isEmpty() ? getString(R.string.textViewNotasDeFundo) + notaDeFundo + "\n" : "")
+//                , Toast.LENGTH_LONG).show();
     }
 }

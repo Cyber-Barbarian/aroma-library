@@ -7,6 +7,11 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContract;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
@@ -43,6 +48,7 @@ public class AromasActivity extends AppCompatActivity {
     }
 
     private void popularListaAromas() {
+        /*
         String[] aromas_nome = getResources().getStringArray(R.array.aromas_nome);
         int[] aromas_favoritos = getResources().getIntArray(R.array.aromas_favorito);
         int[] aromas_longevidade = getResources().getIntArray(R.array.aromas_longevidade);
@@ -53,6 +59,7 @@ public class AromasActivity extends AppCompatActivity {
         String[] aromas_piramide_olfativa_saida = getResources().getStringArray(R.array.aromas_piramide_olfativa_saida);
         String[] aromas_piramide_olfativa_corpo = getResources().getStringArray(R.array.aromas_piramide_olfativa_corpo);
         String[] aromas_piramide_olfativa_fundo = getResources().getStringArray(R.array.aromas_piramide_olfativa_fundo);
+        */
 
         listaAromas = new ArrayList<>();
         Aroma aroma;
@@ -64,6 +71,7 @@ public class AromasActivity extends AppCompatActivity {
         Genero genero;
         Genero[] generoArray = Genero.values();
 
+        /*
         for (int cont = 0; cont < aromas_nome.length; cont++) {
             favoritos = (aromas_favoritos[cont] == 1 ? true : false);
             longevidade = longevidadeArray[aromas_longevidade[cont]];
@@ -83,6 +91,7 @@ public class AromasActivity extends AppCompatActivity {
 
             listaAromas.add(aroma);
         }
+        */
 
 
         /*
@@ -105,5 +114,43 @@ public class AromasActivity extends AppCompatActivity {
         startActivity(intentAbertura);
 
     }
+
+    //launcher para tela de cadastro
+    ActivityResultLauncher<Intent> laucherNovoAroma = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
+            new ActivityResultCallback<ActivityResult>() {
+                @Override
+                public void onActivityResult(ActivityResult result) {
+                    if (result.getResultCode() == AromasActivity.RESULT_OK){
+                        Intent intent = result.getData();
+
+                        Bundle bundle = intent.getExtras();
+
+                        if (bundle != null) {
+                            String aromaNome = bundle.getString(AromaLibraryActivity.KEY_AROMA);
+                            String favorito = bundle.getString(AromaLibraryActivity.KEY_FAVORITO);
+                            String longevidade = bundle.getString(AromaLibraryActivity.KEY_LONGEVIDADE);
+                            String projecao = bundle.getString(AromaLibraryActivity.KEY_PROJECAO);
+                            String genero = bundle.getString(AromaLibraryActivity.KEY_GENERO);
+                            String indicacaoAroma = bundle.getString(AromaLibraryActivity.KEY_INDICACAO);
+                            String tipoAroma = bundle.getString(AromaLibraryActivity.KEY_TIPO);
+                            String notaDeSaida = bundle.getString(AromaLibraryActivity.KEY_SAIDA);
+                            String notaDeBase = bundle.getString(AromaLibraryActivity.KEY_BASE);
+                            String notaDeFundo = bundle.getString(AromaLibraryActivity.KEY_FUNDO);
+
+                            Aroma aromaNovo = new Aroma(aromaNome, Boolean.valueOf(favorito),Longevidade.valueOf(longevidade),Projecao.valueOf(projecao),
+                                    Genero.valueOf(genero),indicacaoAroma, tipoAroma, notaDeSaida, notaDeBase, notaDeFundo) ;
+                            listaAromas.add(aromaNovo);
+
+                            listViewAromas.setAdapter(adapterAroma);
+
+                        }
+                    }
+                }
+            });
+    public void abrirAdicionar(View view){
+
+
+    }
+
 
 }
