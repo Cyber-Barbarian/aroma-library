@@ -1,5 +1,7 @@
 package br.edu.utfpr.rafaelproenca.aroma_library;
 
+import java.text.Normalizer;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -29,6 +31,11 @@ public class AromaLibraryActivity extends AppCompatActivity {
     private CheckBox checkBoxFavoritos;
     private RadioGroup radioGroupLongevidade, radioGroupProjecao, radioGroupGenero;
     private Spinner spinnerTipoAroma, spinnerIndicacao;
+
+    public String removerAcentos(String str) {
+        return Normalizer.normalize(str, Normalizer.Form.NFD)
+                .replaceAll("[\\p{InCombiningDiacriticalMarks}]", "");
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -184,9 +191,9 @@ public class AromaLibraryActivity extends AppCompatActivity {
 
         intenResposta.putExtra(KEY_AROMA,aroma);
         intenResposta.putExtra(KEY_FAVORITO,favorito);
-        intenResposta.putExtra(KEY_LONGEVIDADE,longevidade);
-        intenResposta.putExtra(KEY_PROJECAO,projecao);
-        intenResposta.putExtra(KEY_GENERO,genero);
+        intenResposta.putExtra(KEY_LONGEVIDADE,removerAcentos(longevidade));
+        intenResposta.putExtra(KEY_PROJECAO,removerAcentos(projecao));
+        intenResposta.putExtra(KEY_GENERO,removerAcentos(genero));
         intenResposta.putExtra(KEY_INDICACAO,indicacaoAroma);
         intenResposta.putExtra(KEY_TIPO,tipoAroma);
         intenResposta.putExtra(KEY_SAIDA,notaDeSaida);

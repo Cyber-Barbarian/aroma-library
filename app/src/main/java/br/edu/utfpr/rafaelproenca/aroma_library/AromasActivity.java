@@ -139,9 +139,9 @@ public class AromasActivity extends AppCompatActivity {
 
                             Aroma aromaNovo = new Aroma(aromaNome, favorito,Longevidade.valueOf(longevidade),Projecao.valueOf(projecao),
                                     Genero.valueOf(genero),indicacaoAroma, tipoAroma, notaDeSaida, notaDeBase, notaDeFundo) ;
-                            listaAromas.add(aromaNovo);
 
-                            listViewAromas.setAdapter(adapterAroma);
+                            listaAromas.add(aromaNovo);
+                            adapterAroma.notifyDataSetChanged();
 
                         }
                     }
