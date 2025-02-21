@@ -127,7 +127,7 @@ public class AromasActivity extends AppCompatActivity {
 
                         if (bundle != null) {
                             String aromaNome = bundle.getString(AromaLibraryActivity.KEY_AROMA);
-                            String favorito = bundle.getString(AromaLibraryActivity.KEY_FAVORITO);
+                            Boolean favorito = bundle.getBoolean(AromaLibraryActivity.KEY_FAVORITO);
                             String longevidade = bundle.getString(AromaLibraryActivity.KEY_LONGEVIDADE);
                             String projecao = bundle.getString(AromaLibraryActivity.KEY_PROJECAO);
                             String genero = bundle.getString(AromaLibraryActivity.KEY_GENERO);
@@ -137,7 +137,7 @@ public class AromasActivity extends AppCompatActivity {
                             String notaDeBase = bundle.getString(AromaLibraryActivity.KEY_BASE);
                             String notaDeFundo = bundle.getString(AromaLibraryActivity.KEY_FUNDO);
 
-                            Aroma aromaNovo = new Aroma(aromaNome, Boolean.valueOf(favorito),Longevidade.valueOf(longevidade),Projecao.valueOf(projecao),
+                            Aroma aromaNovo = new Aroma(aromaNome, favorito,Longevidade.valueOf(longevidade),Projecao.valueOf(projecao),
                                     Genero.valueOf(genero),indicacaoAroma, tipoAroma, notaDeSaida, notaDeBase, notaDeFundo) ;
                             listaAromas.add(aromaNovo);
 
@@ -149,6 +149,8 @@ public class AromasActivity extends AppCompatActivity {
             });
     public void abrirAdicionar(View view){
 
+        Intent intentAbertura = new Intent(this,AromaLibraryActivity.class);
+        laucherNovoAroma.launch(intentAbertura);
 
     }
 

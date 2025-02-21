@@ -35,6 +35,8 @@ public class AromaLibraryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        setTitle(getString(R.string.novo_aroma));
+
         textViewheader = findViewById(R.id.textViewheader);
         editTextAroma = findViewById(R.id.editTextAroma);
         editTextTextNotasDeSaida = findViewById(R.id.editTextTextNotasDeSaida);

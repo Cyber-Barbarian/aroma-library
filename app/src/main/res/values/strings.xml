@@ -94,5 +94,6 @@
     <string name="sobre">Sobre</string>
     <string name="cadastro_de_aromas">Cadastro de Aromas</string>
     <string name="adicionar">Adcionar</string>
+    <string name="novo_aroma">Novo Aroma</string>
 
 </resources>
