@@ -2,6 +2,9 @@ package br.edu.utfpr.rafaelproenca.aroma_library;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -12,6 +15,7 @@ import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContract;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
@@ -107,7 +111,7 @@ public class AromasActivity extends AppCompatActivity {
         listViewAromas.setAdapter(adapterAroma);
 
     }
-    public void abrirSobre(View view){
+    public void abrirSobre(){
         Intent intentAbertura = new Intent(this, SobreActivity.class);
         //se quiser passar parâmetros
         //intentAbertura.putExtra()
@@ -147,12 +151,37 @@ public class AromasActivity extends AppCompatActivity {
                     }
                 }
             });
-    public void abrirAdicionar(View view){
+    public void abrirAdicionar(){
 
         Intent intentAbertura = new Intent(this,AromaLibraryActivity.class);
         laucherNovoAroma.launch(intentAbertura);
 
     }
+
+    //cria o menu fixo
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.aromas_opcoes, menu);
+        return true;
+    }
+
+    //um metodo so pra todos os menus items
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int idMenuItem = item.getItemId();
+        if (idMenuItem == R.id.menuItemAdicionar){
+            abrirAdicionar();
+            return true;
+        }else if (idMenuItem == R.id.menuItemSobre){
+            abrirSobre();
+            return true;
+        }else {
+            return super.onOptionsItemSelected(item);
+        }
+    }
+
+
+
 
 
 }

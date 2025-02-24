@@ -202,27 +202,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textViewTipoDeAroma" />
 
-        <Button
-            android:id="@+id/buttonSalvar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="36dp"
-            android:layout_marginTop="508dp"
-            android:onClick="salvarValores"
-            android:text="@string/buttonSalvar"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/radioGroupLongevidade" />
-
-        <Button
-            android:id="@+id/buttonLimpar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="48dp"
-            android:onClick="limparCampos"
-            android:text="@string/buttonLimpar"
-            app:layout_constraintStart_toEndOf="@+id/buttonSalvar"
-            app:layout_constraintTop_toTopOf="@+id/buttonSalvar" />
-
         <TextView
             android:id="@+id/textViewTipoDeAroma"
             android:layout_width="wrap_content"

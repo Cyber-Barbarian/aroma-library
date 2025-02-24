@@ -4,6 +4,8 @@ import java.text.Normalizer;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -12,6 +14,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class AromaLibraryActivity extends AppCompatActivity {
@@ -96,7 +99,7 @@ public class AromaLibraryActivity extends AppCompatActivity {
 //        spinnerTipoAroma.setAdapter(adapterAroma);
 //    }
 
-    public void limparCampos(View view) {
+    public void limparCampos() {
         editTextAroma.setText(null);
         editTextTextNotasDeSaida.setText(null);
         editTextTextNotasDeCorpo.setText(null);
@@ -112,7 +115,7 @@ public class AromaLibraryActivity extends AppCompatActivity {
         Toast.makeText(this, R.string.as_entradas_foram_apagadas, Toast.LENGTH_LONG).show();
     }
 
-    public void salvarValores(View view) {
+    public void salvarValores() {
         String aroma = editTextAroma.getText().toString().trim();
         String notaDeSaida = editTextTextNotasDeSaida.getText().toString().trim();
         String notaDeBase = editTextTextNotasDeCorpo.getText().toString().trim();
@@ -219,5 +222,27 @@ public class AromaLibraryActivity extends AppCompatActivity {
 //                        (notaDeBase != null && !notaDeBase.isEmpty() ? getString(R.string.textViewNotasDeCorpo) + notaDeBase + "\n" : "") +
 //                        (notaDeFundo != null && !notaDeFundo.isEmpty() ? getString(R.string.textViewNotasDeFundo) + notaDeFundo + "\n" : "")
 //                , Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.aroma_library_opcoes,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int idMenuItem = item.getItemId();
+
+        if(idMenuItem == R.id.menuItemSalvar){
+            salvarValores();
+            return true;
+        } else if (idMenuItem == R.id.menuItemLimpar){
+            limparCampos();
+            return true;
+        }else {
+
+            return super.onOptionsItemSelected(item);
+        }
     }
 }
