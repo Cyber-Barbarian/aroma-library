@@ -29,6 +29,11 @@ public class AromaLibraryActivity extends AppCompatActivity {
     public static final String KEY_SAIDA = "KEY_SAIDA";
     public static final String KEY_BASE = "KEY_BASE";
     public static final String KEY_FUNDO = "KEY_FUNDO";
+    //ação editar
+    public static final String KEY_MODO = "MODO";
+    private int modo;
+    public static final int MODO_NOVO = 0;
+    public static final int MODO_EDITAR = 1;
     private TextView textViewheader;
     private EditText editTextAroma, editTextTextNotasDeSaida, editTextTextNotasDeCorpo, editTextTextNotasDeFundo;
     private CheckBox checkBoxFavoritos;
@@ -59,6 +64,34 @@ public class AromaLibraryActivity extends AppCompatActivity {
         spinnerTipoAroma = findViewById(R.id.spinnerTipoAroma);
         spinnerIndicacao = findViewById(R.id.spinnerIndicacao);
         textViewheader.requestFocus();
+        //ação editar
+        Intent intentAbertura = getIntent();
+        Bundle bundle = intentAbertura.getExtras();
+        if (bundle != null){
+            modo = bundle.getInt(KEY_MODO);
+
+            if (modo == MODO_NOVO){
+                setTitle(getString(R.string.novo_aroma));
+            } else {
+                setTitle(getString(R.string.editar_aroma));
+                String aromaNome = bundle.getString(AromaLibraryActivity.KEY_AROMA);
+                Boolean favorito = bundle.getBoolean(AromaLibraryActivity.KEY_FAVORITO);
+                String longevidade = bundle.getString(AromaLibraryActivity.KEY_LONGEVIDADE);
+                String projecao = bundle.getString(AromaLibraryActivity.KEY_PROJECAO);
+                String genero = bundle.getString(AromaLibraryActivity.KEY_GENERO);
+                String indicacaoAroma = bundle.getString(AromaLibraryActivity.KEY_INDICACAO);
+                String tipoAroma = bundle.getString(AromaLibraryActivity.KEY_TIPO);
+                String notaDeSaida = bundle.getString(AromaLibraryActivity.KEY_SAIDA);
+                String notaDeBase = bundle.getString(AromaLibraryActivity.KEY_BASE);
+                String notaDeFundo = bundle.getString(AromaLibraryActivity.KEY_FUNDO);
+
+                editTextAroma.setText(aromaNome);
+                checkBoxFavoritos.setChecked(favorito);
+                radioGroupLongevidade.setActivated();
+
+
+            }
+        }
 
         //popularSpinner();
     }

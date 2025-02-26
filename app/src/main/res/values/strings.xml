@@ -95,5 +95,8 @@
     <string name="cadastro_de_aromas">Cadastro de Aromas</string>
     <string name="adicionar">Adcionar</string>
     <string name="novo_aroma">Novo Aroma</string>
+    <string name="editar">Editar</string>
+    <string name="excluir">Excluir</string>
+    <string name="editar_aroma">Editar aroma</string>
 
 </resources>
