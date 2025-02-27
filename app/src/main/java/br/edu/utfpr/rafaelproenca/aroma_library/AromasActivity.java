@@ -1,6 +1,8 @@
 package br.edu.utfpr.rafaelproenca.aroma_library;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.ContextMenu;
 import android.view.Menu;
@@ -14,10 +16,10 @@ import android.widget.Toast;
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContract;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.view.ActionMode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,6 +37,60 @@ public class AromasActivity extends AppCompatActivity {
 
     private int posicaoSelecionada = -1;
 
+    private ActionMode actionMode;
+    private View     viewSelecionada;
+    private Drawable backgroundDrawable;
+
+    //ouvidor de eventos do menu de ação contextual
+    private ActionMode.Callback actionCallback = new ActionMode.Callback() {
+        //criação, exibiçao do menu
+        @Override
+        public boolean onCreateActionMode(ActionMode mode, Menu menu) {
+            MenuInflater inflate = mode.getMenuInflater();
+            inflate.inflate(R.menu.aroma_item_selecionado, menu);
+            return true;
+        }
+        //altera em tempo de execução
+        @Override
+        public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
+            return false;
+        }
+        //click no menu
+        @Override
+        public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
+            AdapterView.AdapterContextMenuInfo info;
+            info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+            int idMenuItem = item.getItemId();
+            if (idMenuItem == R.id.menuItemEditar){
+                editarAroma();
+                return true;
+            } else if (idMenuItem == R.id.menuItemExcluir){
+                excluirAroma();
+                mode.finish();
+                return true;
+            } else {
+                //return super.onContextItemSelected(item);
+                return false;
+            }
+
+        }
+        //destroi o menu
+        @Override
+        public void onDestroyActionMode(ActionMode mode) {
+            if (viewSelecionada != null){
+                viewSelecionada.setBackground(backgroundDrawable);
+            }
+
+            actionMode         = null;
+            viewSelecionada    = null;
+            backgroundDrawable = null;
+
+            listViewAromas.setEnabled(true);
+
+        }
+    };
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +98,9 @@ public class AromasActivity extends AppCompatActivity {
 
         setTitle(getString(R.string.cadastro_de_aromas));
         listViewAromas = findViewById(R.id.listViewAromas);
+
+        /*
+
         listViewAromas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -51,23 +110,13 @@ public class AromasActivity extends AppCompatActivity {
                         Toast.LENGTH_SHORT).show();
             }
         });
+
+         */
         popularListaAromas();
         registerForContextMenu(listViewAromas);
     }
 
     private void popularListaAromas() {
-        /*
-        String[] aromas_nome = getResources().getStringArray(R.array.aromas_nome);
-        int[] aromas_favoritos = getResources().getIntArray(R.array.aromas_favorito);
-        int[] aromas_longevidade = getResources().getIntArray(R.array.aromas_longevidade);
-        int[] aromas_projecao = getResources().getIntArray(R.array.aromas_projecao);
-        int[] aromas_genero = getResources().getIntArray(R.array.aromas_genero);
-        String[] aromas_indicacao = getResources().getStringArray(R.array.aromas_indicacao);
-        String[] aromas_tipo_de_aroma = getResources().getStringArray(R.array.aromas_tipo_de_aroma);
-        String[] aromas_piramide_olfativa_saida = getResources().getStringArray(R.array.aromas_piramide_olfativa_saida);
-        String[] aromas_piramide_olfativa_corpo = getResources().getStringArray(R.array.aromas_piramide_olfativa_corpo);
-        String[] aromas_piramide_olfativa_fundo = getResources().getStringArray(R.array.aromas_piramide_olfativa_fundo);
-        */
 
         listaAromas = new ArrayList<>();
         Aroma aroma;
@@ -79,46 +128,54 @@ public class AromasActivity extends AppCompatActivity {
         Genero genero;
         Genero[] generoArray = Genero.values();
 
-        /*
-        for (int cont = 0; cont < aromas_nome.length; cont++) {
-            favoritos = (aromas_favoritos[cont] == 1 ? true : false);
-            longevidade = longevidadeArray[aromas_longevidade[cont]];
-            projecao = projecaoArray[aromas_projecao[cont]];
-            genero = generoArray[aromas_genero[cont]];
-
-            aroma = new Aroma(aromas_nome[cont],
-                    favoritos,
-                    longevidade,
-                    projecao,
-                    genero,
-                    aromas_indicacao[cont],
-                    aromas_tipo_de_aroma[cont],
-                    aromas_piramide_olfativa_saida[cont],
-                    aromas_piramide_olfativa_corpo[cont],
-                    aromas_piramide_olfativa_fundo[cont]);
-
-            listaAromas.add(aroma);
-        }
-        */
-
-
-        /*
-        ArrayAdapter<Aroma> adapter = new ArrayAdapter<>(this,
-
-                                                            android.R.layout.simple_list_item_1,
-                                                            listaAromas);
-
-        listViewAromas.setAdapter(adapter);
-         */
-
         adapterAroma = new AromaAdapter(this, listaAromas);
-        listViewAromas.setAdapter(adapterAroma);
 
+
+
+        listViewAromas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Aroma aroma = (Aroma) listViewAromas.getItemAtPosition(position);
+                Toast.makeText(getApplicationContext(),
+                        "\"" + aroma.getNome() + "\"" + "\n" + getString(R.string.foi_selecionado),
+                        Toast.LENGTH_SHORT).show();
+                posicaoSelecionada = position;
+                editarAroma();
+            }
+        });
+
+        listViewAromas.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+
+
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                if (actionMode != null) {
+                    return false;
+                }
+                Aroma aroma = (Aroma) listViewAromas.getItemAtPosition(position);
+                Toast.makeText(getApplicationContext(),
+                        "\"" + aroma.getNome() + "\"" + "\n" + getString(R.string.foi_selecionado),
+                        Toast.LENGTH_SHORT).show();
+
+                posicaoSelecionada = position;
+
+                viewSelecionada = view;
+                backgroundDrawable = view.getBackground();
+
+                view.setBackgroundColor(Color.LTGRAY);
+
+                listViewAromas.setEnabled(false);
+
+                actionMode = startSupportActionMode(actionCallback);
+
+                return true;
+            }
+        });
+        listViewAromas.setAdapter(adapterAroma);
     }
     public void abrirSobre(){
         Intent intentAbertura = new Intent(this, SobreActivity.class);
-        //se quiser passar parâmetros
-        //intentAbertura.putExtra()
         startActivity(intentAbertura);
 
     }
@@ -185,6 +242,7 @@ public class AromasActivity extends AppCompatActivity {
         }
     }
 
+    /*
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
@@ -192,15 +250,16 @@ public class AromasActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.aroma_item_selecionado, menu);
 
     }
+    */
 
-    private void  excluirAroma(int posicao){
-        listaAromas.remove(posicao);
+
+    private void  excluirAroma(){
+        listaAromas.remove(posicaoSelecionada);
         adapterAroma.notifyDataSetChanged();
     }
 
-    private void editarAroma(int posicao){
+    private void editarAroma(){
 
-        posicaoSelecionada = posicao;
 
         Aroma aromaEditar = listaAromas.get(posicaoSelecionada);
         Intent intentAbertura =  new Intent(this, AromaLibraryActivity.class);
@@ -258,16 +317,18 @@ public class AromasActivity extends AppCompatActivity {
                         }
                     }
                     posicaoSelecionada = -1;
+                    if (actionMode!=null){
+                        actionMode.finish();
+                    }
                 }
             });
-    @Override
+
+/*    @Override
     public boolean onContextItemSelected(@NonNull MenuItem item) {
         AdapterView.AdapterContextMenuInfo info;
         info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
         int idMenuItem = item.getItemId();
         if (idMenuItem == R.id.menuItemEditar){
-            //ver na AromaLibraryActivity --> criamos o suporte para dois modos(dcadastro e edição)
-            //VER KEY_MODO e abrirAdicionar
             editarAroma(info.position);
             return true;
         } else if (idMenuItem == R.id.menuItemExcluir){
@@ -277,4 +338,6 @@ public class AromasActivity extends AppCompatActivity {
             return super.onContextItemSelected(item);
         }
     }
+
+ */
 }

@@ -4,8 +4,12 @@
 
     <item
         android:id="@+id/menuItemEditar"
-        android:title="@string/editar" />
+        android:icon="@android:drawable/ic_menu_edit"
+        android:title="@string/editar"
+        app:showAsAction="ifRoom" />
     <item
         android:id="@+id/menuItemExcluir"
-        android:title="@string/excluir" />
+        android:icon="@android:drawable/ic_menu_delete"
+        android:title="@string/excluir"
+        app:showAsAction="ifRoom" />
 </menu>

@@ -82,7 +82,7 @@
     <string name="favorito">Favorito: </string>
     <string name="perfume_favorito">&#128153; Aroma entre os favoritos! &#128153;</string>
     <string name="empty_message"></string>
-    <string name="foi_clicado">"Foi clicado!"</string>
+    <string name="foi_selecionado">"Foi selecionado!"</string>
     <string name="separator">-------- AROMA --------</string>
     <string name="logo_da_utfpr">Logo da UTFPR</string>
     <string name="descricao_aplicativo">Descrição: Aplicativo para catálogo de perfumes e aromas.</string>

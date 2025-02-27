@@ -45,6 +45,8 @@ public class AromaLibraryActivity extends AppCompatActivity {
     RadioButton radioButtonLongevidadeId, radioButtonProjecaoId, radioButtonGeneroId;
     private Spinner spinnerTipoAroma, spinnerIndicacao;
 
+    private Aroma aromaOriginal;
+
     public String removerAcentos(String str) {
         return Normalizer.normalize(str, Normalizer.Form.NFD)
                 .replaceAll("[\\p{InCombiningDiacriticalMarks}]", "");
@@ -89,6 +91,10 @@ public class AromaLibraryActivity extends AppCompatActivity {
                 String notaDeSaida = bundle.getString(AromaLibraryActivity.KEY_SAIDA);
                 String notaDeBase = bundle.getString(AromaLibraryActivity.KEY_BASE);
                 String notaDeFundo = bundle.getString(AromaLibraryActivity.KEY_FUNDO);
+
+                aromaOriginal = new Aroma(aromaNome, favorito,Longevidade.valueOf(longevidade),Projecao.valueOf(projecao),
+                        Genero.valueOf(genero),indicacaoAroma, tipoAroma, notaDeSaida, notaDeBase, notaDeFundo) ;
+
 
                 editTextAroma.setText(aromaNome);
                 editTextTextNotasDeSaida.setText(notaDeSaida);
@@ -278,6 +284,24 @@ public class AromaLibraryActivity extends AppCompatActivity {
             return;
         }
 
+        if (modo == MODO_EDITAR &&
+                aroma.equalsIgnoreCase(aromaOriginal.getNome()) &&
+                favorito == aromaOriginal.isFavoritos() &&
+                Longevidade.valueOf(removerAcentos(longevidade)) == aromaOriginal.getLongevidade() &&
+                Projecao.valueOf(projecao) == aromaOriginal.getProjecao() &&
+                Genero.valueOf(genero) == aromaOriginal.getGenero() &&
+                indicacaoAroma.equalsIgnoreCase(aromaOriginal.getIndicacao()) &&
+                tipoAroma == aromaOriginal.getTipoDeAroma() &&
+                notaDeSaida == aromaOriginal.getPiramideOlfativaSaida() &&
+                notaDeBase == aromaOriginal.getPiramideOlfativaCorpo() &&
+                notaDeSaida == aromaOriginal.getPiramideOlfativaSaida()){
+
+            // valores não foram alterado, não precisa salvar nada
+            setResult(AromasActivity.RESULT_CANCELED);
+            finish();
+            return;
+        }
+
         Intent intenResposta = new Intent();
 
         intenResposta.putExtra(KEY_AROMA,aroma);
@@ -295,21 +319,6 @@ public class AromaLibraryActivity extends AppCompatActivity {
 
         finish();
 
-
-
-
-//        Toast.makeText(this,
-//                getString(R.string.aroma_cadastrado) + aroma + "\n" +
-//                        (favorito ? getString(R.string.tag_favoritos) + "\n" : "") +
-//                        getString(R.string.longevidade) + longevidade + "\n" +
-//                        getString(R.string.projecao) + projecao + "\n" +
-//                        getString(R.string.textViewGenero) + genero + "\n" +
-//                        getString(R.string.indicacao_do_aroma) + indicacaoAroma + "\n" +
-//                        getString(R.string.tipo_de_aroma) + tipoAroma + "\n" +
-//                        (notaDeSaida != null && !notaDeSaida.isEmpty() ? getString(R.string.textViewNotasDeSaida) + notaDeSaida + "\n" : "") +
-//                        (notaDeBase != null && !notaDeBase.isEmpty() ? getString(R.string.textViewNotasDeCorpo) + notaDeBase + "\n" : "") +
-//                        (notaDeFundo != null && !notaDeFundo.isEmpty() ? getString(R.string.textViewNotasDeFundo) + notaDeFundo + "\n" : "")
-//                , Toast.LENGTH_LONG).show();
     }
 
     @Override
