@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -18,6 +17,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import br.edu.utfpr.rafaelproenca.aroma_library.enums.Genero;
 import br.edu.utfpr.rafaelproenca.aroma_library.enums.Longevidade;
 import br.edu.utfpr.rafaelproenca.aroma_library.enums.Projecao;
 
@@ -91,9 +91,22 @@ public class AromaLibraryActivity extends AppCompatActivity {
                 String notaDeFundo = bundle.getString(AromaLibraryActivity.KEY_FUNDO);
 
                 editTextAroma.setText(aromaNome);
+                editTextTextNotasDeSaida.setText(notaDeSaida);
+                editTextTextNotasDeCorpo.setText(notaDeBase);
+                editTextTextNotasDeFundo.setText(notaDeFundo);
                 checkBoxFavoritos.setChecked(favorito);
 
                 //continuar
+                if (longevidade.equalsIgnoreCase(String.valueOf(Longevidade.Curta))) {
+                    radioButtonLongevidadeId = findViewById(R.id.radioButtonCurta);
+                    radioButtonLongevidadeId.setChecked(true);
+                } else if (longevidade.equalsIgnoreCase(String.valueOf(Longevidade.Media))) {
+                    radioButtonLongevidadeId = findViewById(R.id.radioButtonMedia);
+                    radioButtonLongevidadeId.setChecked(true);
+                } else if (longevidade.equalsIgnoreCase(String.valueOf(Longevidade.Longa))) {
+                    radioButtonLongevidadeId = findViewById(R.id.radioButtonLonga);
+                    radioButtonLongevidadeId.setChecked(true);
+                }
 
                 if (projecao.equalsIgnoreCase(String.valueOf(Projecao.Fraca))) {
                     radioButtonProjecaoId = findViewById(R.id.radioButtonFraca);
@@ -105,8 +118,31 @@ public class AromaLibraryActivity extends AppCompatActivity {
                     radioButtonProjecaoId = findViewById(R.id.radioButtonForte);
                     radioButtonProjecaoId.setChecked(true);
                 }
-                //spinnerIndicacao.setAutofillHints(indicacaoAroma);
-                //spinnerTipoAroma.se
+
+                if (genero.equalsIgnoreCase(String.valueOf(Genero.Masculino))) {
+                    radioButtonGeneroId = findViewById(R.id.radioButtonMasculino);
+                    radioButtonGeneroId.setChecked(true);
+                } else if (genero.equalsIgnoreCase(String.valueOf(Genero.Feminino))) {
+                    radioButtonGeneroId = findViewById(R.id.radioButtonFeminino);
+                    radioButtonGeneroId.setChecked(true);
+                } else if (genero.equalsIgnoreCase(String.valueOf(Genero.Unissex))) {
+                    radioButtonGeneroId = findViewById(R.id.radioButtonUnissex);
+                    radioButtonGeneroId.setChecked(true);
+                }
+                int indicacaoPosition = 0;
+                for (String elem : getResources().getStringArray(R.array.indicacao_aromas)) {
+                    if (elem.equalsIgnoreCase(indicacaoAroma)){
+                        spinnerIndicacao.setSelection(indicacaoPosition);
+                    }else{indicacaoPosition+=1;}
+                }
+                int tipoAromaPosition = 0;
+                for (String elem : getResources().getStringArray(R.array.tipos_de_aromas)) {
+                    if (elem.equalsIgnoreCase(tipoAroma)){
+                        spinnerTipoAroma.setSelection(tipoAromaPosition);
+                    }else{
+                        tipoAromaPosition +=1;}
+                }
+
 
 
             }

@@ -239,14 +239,25 @@ public class AromasActivity extends AppCompatActivity {
                             String notaDeBase = bundle.getString(AromaLibraryActivity.KEY_BASE);
                             String notaDeFundo = bundle.getString(AromaLibraryActivity.KEY_FUNDO);
 
-                            //Aroma aromaNovo = new Aroma(aromaNome, favorito,Longevidade.valueOf(longevidade),Projecao.valueOf(projecao),
-                            //        Genero.valueOf(genero),indicacaoAroma, tipoAroma, notaDeSaida, notaDeBase, notaDeFundo) ;
+                            Aroma aromaEditado = listaAromas.get(posicaoSelecionada);
 
-                            //listaAromas.add(aromaNovo);
+                            aromaEditado.setNome(aromaNome);
+                            aromaEditado.setFavoritos(favorito);
+                            aromaEditado.setLongevidade(Longevidade.valueOf(longevidade));
+                            aromaEditado.setProjecao(Projecao.valueOf(projecao));
+                            aromaEditado.setGenero(Genero.valueOf(genero));
+                            aromaEditado.setIndicacao(indicacaoAroma);
+                            aromaEditado.setTipoDeAroma(tipoAroma);
+                            aromaEditado.setPiramideOlfativaSaida(notaDeSaida);
+                            aromaEditado.setPiramideOlfativaCorpo(notaDeBase);
+                            aromaEditado.setPiramideOlfativaFundo(notaDeFundo);
+
+
                             adapterAroma.notifyDataSetChanged();
 
                         }
                     }
+                    posicaoSelecionada = -1;
                 }
             });
     @Override
