@@ -207,9 +207,9 @@ public class AromasActivity extends AppCompatActivity {
         intentAbertura.putExtra(AromaLibraryActivity.KEY_MODO, AromaLibraryActivity.MODO_EDITAR);
         intentAbertura.putExtra(AromaLibraryActivity.KEY_AROMA ,aromaEditar.getNome());
         intentAbertura.putExtra(AromaLibraryActivity.KEY_FAVORITO ,aromaEditar.isFavoritos());
-        intentAbertura.putExtra(AromaLibraryActivity.KEY_LONGEVIDADE ,aromaEditar.getLongevidade());
-        intentAbertura.putExtra(AromaLibraryActivity.KEY_PROJECAO ,aromaEditar.getProjecao());
-        intentAbertura.putExtra(AromaLibraryActivity.KEY_GENERO ,aromaEditar.getGenero());
+        intentAbertura.putExtra(AromaLibraryActivity.KEY_LONGEVIDADE ,aromaEditar.getLongevidade().toString());
+        intentAbertura.putExtra(AromaLibraryActivity.KEY_PROJECAO ,aromaEditar.getProjecao().toString());
+        intentAbertura.putExtra(AromaLibraryActivity.KEY_GENERO ,aromaEditar.getGenero().toString());
         intentAbertura.putExtra(AromaLibraryActivity.KEY_INDICACAO ,aromaEditar.getIndicacao());
         intentAbertura.putExtra(AromaLibraryActivity.KEY_TIPO ,aromaEditar.getTipoDeAroma());
         intentAbertura.putExtra(AromaLibraryActivity.KEY_SAIDA ,aromaEditar.getPiramideOlfativaSaida());

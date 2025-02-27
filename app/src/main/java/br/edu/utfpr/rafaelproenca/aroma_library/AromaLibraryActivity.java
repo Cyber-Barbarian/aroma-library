@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -16,6 +17,9 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import br.edu.utfpr.rafaelproenca.aroma_library.enums.Longevidade;
+import br.edu.utfpr.rafaelproenca.aroma_library.enums.Projecao;
 
 public class AromaLibraryActivity extends AppCompatActivity {
     public static final String KEY_AROMA = "KEY_AROMA";
@@ -38,6 +42,7 @@ public class AromaLibraryActivity extends AppCompatActivity {
     private EditText editTextAroma, editTextTextNotasDeSaida, editTextTextNotasDeCorpo, editTextTextNotasDeFundo;
     private CheckBox checkBoxFavoritos;
     private RadioGroup radioGroupLongevidade, radioGroupProjecao, radioGroupGenero;
+    RadioButton radioButtonLongevidadeId, radioButtonProjecaoId, radioButtonGeneroId;
     private Spinner spinnerTipoAroma, spinnerIndicacao;
 
     public String removerAcentos(String str) {
@@ -87,7 +92,21 @@ public class AromaLibraryActivity extends AppCompatActivity {
 
                 editTextAroma.setText(aromaNome);
                 checkBoxFavoritos.setChecked(favorito);
-                radioGroupLongevidade.setActivated();
+
+                //continuar
+
+                if (projecao.equalsIgnoreCase(String.valueOf(Projecao.Fraca))) {
+                    radioButtonProjecaoId = findViewById(R.id.radioButtonFraca);
+                    radioButtonProjecaoId.setChecked(true);
+                } else if (projecao.equalsIgnoreCase(String.valueOf(Projecao.Moderada))) {
+                    radioButtonProjecaoId = findViewById(R.id.radioButtonModerada);
+                    radioButtonProjecaoId.setChecked(true);
+                } else if (projecao.equalsIgnoreCase(String.valueOf(Projecao.Forte))) {
+                    radioButtonProjecaoId = findViewById(R.id.radioButtonForte);
+                    radioButtonProjecaoId.setChecked(true);
+                }
+                //spinnerIndicacao.setAutofillHints(indicacaoAroma);
+                //spinnerTipoAroma.se
 
 
             }
