@@ -22,6 +22,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.view.ActionMode;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import br.edu.utfpr.rafaelproenca.aroma_library.enums.Genero;
@@ -206,6 +207,7 @@ public class AromasActivity extends AppCompatActivity {
                                     Genero.valueOf(genero),indicacaoAroma, tipoAroma, notaDeSaida, notaDeBase, notaDeFundo) ;
 
                             listaAromas.add(aromaNovo);
+                            Collections.sort(listaAromas,Aroma.ordenacaoCrescente);
                             adapterAroma.notifyDataSetChanged();
 
                         }
@@ -311,6 +313,7 @@ public class AromasActivity extends AppCompatActivity {
                             aromaEditado.setPiramideOlfativaCorpo(notaDeBase);
                             aromaEditado.setPiramideOlfativaFundo(notaDeFundo);
 
+                            Collections.sort(listaAromas,Aroma.ordenacaoCrescente);
 
                             adapterAroma.notifyDataSetChanged();
 

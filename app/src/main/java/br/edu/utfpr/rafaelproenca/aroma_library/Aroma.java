@@ -1,10 +1,19 @@
 package br.edu.utfpr.rafaelproenca.aroma_library;
 
+import java.util.Comparator;
+
 import br.edu.utfpr.rafaelproenca.aroma_library.enums.Genero;
 import br.edu.utfpr.rafaelproenca.aroma_library.enums.Longevidade;
 import br.edu.utfpr.rafaelproenca.aroma_library.enums.Projecao;
 
 public class Aroma {
+
+    public static Comparator<Aroma> ordenacaoCrescente = new Comparator<Aroma>() {
+        @Override
+        public int compare(Aroma aroma1, Aroma aroma2) {
+            return aroma1.getNome().compareToIgnoreCase(aroma2.getNome());
+        }
+    };
     private String nome;
     private boolean favoritos;
     private Longevidade longevidade;
