@@ -98,5 +98,6 @@
     <string name="editar">Editar</string>
     <string name="excluir">Excluir</string>
     <string name="editar_aroma">Editar aroma</string>
+    <string name="sugerir_tipo">Sugerir Tipo</string>
 
 </resources>

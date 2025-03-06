@@ -42,6 +42,8 @@ public class AromasActivity extends AppCompatActivity {
     private View     viewSelecionada;
     private Drawable backgroundDrawable;
 
+    public static final String ARQUIVO_PREFERENCIAS = "br.edu.utfpr.rafaelproenca.aroma_library.preferencias";
+
     //ouvidor de eventos do menu de ação contextual
     private ActionMode.Callback actionCallback = new ActionMode.Callback() {
         //criação, exibiçao do menu

@@ -14,4 +14,8 @@
             android:title="@string/buttonLimpar"
             app:showAsAction="ifRoom" />
     </group>
+    <item
+        android:id="@+id/menuItemSugerirTipo"
+        android:checkable="true"
+        android:title="@string/sugerir_tipo" />
 </menu>

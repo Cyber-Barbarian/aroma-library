@@ -2,7 +2,9 @@ package br.edu.utfpr.rafaelproenca.aroma_library;
 
 import java.text.Normalizer;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -35,6 +37,9 @@ public class AromaLibraryActivity extends AppCompatActivity {
     public static final String KEY_FUNDO = "KEY_FUNDO";
     //ação editar
     public static final String KEY_MODO = "MODO";
+
+    public static final String KEY_SUGERIR_TIPO = "SUGERIR_TIPO";
+    public static final String KEY_ULTIMO_TIPO = "ULTIMO_TIPO";
     private int modo;
     public static final int MODO_NOVO = 0;
     public static final int MODO_EDITAR = 1;
@@ -46,6 +51,9 @@ public class AromaLibraryActivity extends AppCompatActivity {
     private Spinner spinnerTipoAroma, spinnerIndicacao;
 
     private Aroma aromaOriginal;
+
+    private boolean sugerirTipo = false;
+    private int ultimoTipo = 0;
 
     public String removerAcentos(String str) {
         return Normalizer.normalize(str, Normalizer.Form.NFD)
@@ -70,6 +78,7 @@ public class AromaLibraryActivity extends AppCompatActivity {
         radioGroupGenero = findViewById(R.id.radioGroupGenero);
         spinnerTipoAroma = findViewById(R.id.spinnerTipoAroma);
         spinnerIndicacao = findViewById(R.id.spinnerIndicacao);
+        lerPreferencias();
         textViewheader.requestFocus();
         //ação editar
         Intent intentAbertura = getIntent();
@@ -79,6 +88,10 @@ public class AromaLibraryActivity extends AppCompatActivity {
 
             if (modo == MODO_NOVO){
                 setTitle(getString(R.string.novo_aroma));
+                if (sugerirTipo){
+                    spinnerTipoAroma.setSelection(ultimoTipo);
+
+                }
             } else {
                 setTitle(getString(R.string.editar_aroma));
                 String aromaNome = bundle.getString(AromaLibraryActivity.KEY_AROMA);
@@ -302,6 +315,16 @@ public class AromaLibraryActivity extends AppCompatActivity {
             return;
         }
 
+        int tipoAromaInt;
+        try {
+            tipoAromaInt = Integer.parseInt(tipoAroma.replaceAll("\\D+",""));
+        } catch (NumberFormatException e) {
+            tipoAromaInt = 0;
+        }
+
+
+        salvatUltimoTipo(tipoAromaInt);
+
         Intent intenResposta = new Intent();
 
         intenResposta.putExtra(KEY_AROMA,aroma);
@@ -328,6 +351,13 @@ public class AromaLibraryActivity extends AppCompatActivity {
     }
 
     @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        MenuItem item = menu.findItem(R.id.menuItemSugerirTipo);
+        item.setChecked(sugerirTipo);
+        return true;
+    }
+
+    @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int idMenuItem = item.getItemId();
 
@@ -337,9 +367,40 @@ public class AromaLibraryActivity extends AppCompatActivity {
         } else if (idMenuItem == R.id.menuItemLimpar){
             limparCampos();
             return true;
-        }else {
-
+        }else if (idMenuItem == R.id.menuItemSugerirTipo){
+            boolean valor = !item.isChecked();
+            salvarSugerirTipo(valor);
+            item.setChecked(valor);
+            if(sugerirTipo){
+                spinnerTipoAroma.setSelection(ultimoTipo);
+            }
+            return true;
+        }else{
             return super.onOptionsItemSelected(item);
         }
+    }
+    private void lerPreferencias(){
+        SharedPreferences shared = getSharedPreferences(AromasActivity.ARQUIVO_PREFERENCIAS, Context.MODE_PRIVATE);
+
+        sugerirTipo = shared.getBoolean(KEY_SUGERIR_TIPO, sugerirTipo);
+        ultimoTipo = shared.getInt(KEY_ULTIMO_TIPO, ultimoTipo);
+    }
+
+    private void salvarSugerirTipo(boolean novoValor){
+        SharedPreferences shared = getSharedPreferences(AromasActivity.ARQUIVO_PREFERENCIAS, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = shared.edit();
+        editor.putBoolean(KEY_SUGERIR_TIPO, novoValor);
+
+        editor.commit();
+
+        sugerirTipo = novoValor;
+    }
+
+    private void salvatUltimoTipo(int novovalor){
+        SharedPreferences shared = getSharedPreferences(AromasActivity.ARQUIVO_PREFERENCIAS, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = shared.edit();
+        editor.putInt(KEY_ULTIMO_TIPO, novovalor);
+        editor.commit();
+        ultimoTipo = novovalor;
     }
 }
