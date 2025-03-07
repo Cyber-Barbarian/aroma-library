@@ -1,8 +1,11 @@
 package br.edu.utfpr.rafaelproenca.aroma_library;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.Icon;
 import android.os.Bundle;
 import android.view.ContextMenu;
 import android.view.Menu;
@@ -39,10 +42,14 @@ public class AromasActivity extends AppCompatActivity {
     private int posicaoSelecionada = -1;
 
     private ActionMode actionMode;
-    private View     viewSelecionada;
+    private View viewSelecionada;
     private Drawable backgroundDrawable;
 
     public static final String ARQUIVO_PREFERENCIAS = "br.edu.utfpr.rafaelproenca.aroma_library.preferencias";
+    public static final String KEY_ORDENACA_ASCENDENTE = "ORDENACAO_ASCENDENTE";
+    private boolean ordenacaoAscendente = true;
+
+    private MenuItem menuItemOrdenacao;
 
     //ouvidor de eventos do menu de ação contextual
     private ActionMode.Callback actionCallback = new ActionMode.Callback() {
@@ -53,21 +60,25 @@ public class AromasActivity extends AppCompatActivity {
             inflate.inflate(R.menu.aroma_item_selecionado, menu);
             return true;
         }
+
+
+
         //altera em tempo de execução
         @Override
         public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
             return false;
         }
+
         //click no menu
         @Override
         public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
             AdapterView.AdapterContextMenuInfo info;
             info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
             int idMenuItem = item.getItemId();
-            if (idMenuItem == R.id.menuItemEditar){
+            if (idMenuItem == R.id.menuItemEditar) {
                 editarAroma();
                 return true;
-            } else if (idMenuItem == R.id.menuItemExcluir){
+            } else if (idMenuItem == R.id.menuItemExcluir) {
                 excluirAroma();
                 mode.finish();
                 return true;
@@ -77,15 +88,16 @@ public class AromasActivity extends AppCompatActivity {
             }
 
         }
+
         //destroi o menu
         @Override
         public void onDestroyActionMode(ActionMode mode) {
-            if (viewSelecionada != null){
+            if (viewSelecionada != null) {
                 viewSelecionada.setBackground(backgroundDrawable);
             }
 
-            actionMode         = null;
-            viewSelecionada    = null;
+            actionMode = null;
+            viewSelecionada = null;
             backgroundDrawable = null;
 
             listViewAromas.setEnabled(true);
@@ -115,6 +127,7 @@ public class AromasActivity extends AppCompatActivity {
         });
 
          */
+        lerPreferencias();
         popularListaAromas();
         registerForContextMenu(listViewAromas);
     }
@@ -132,7 +145,6 @@ public class AromasActivity extends AppCompatActivity {
         Genero[] generoArray = Genero.values();
 
         adapterAroma = new AromaAdapter(this, listaAromas);
-
 
 
         listViewAromas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -177,7 +189,8 @@ public class AromasActivity extends AppCompatActivity {
         });
         listViewAromas.setAdapter(adapterAroma);
     }
-    public void abrirSobre(){
+
+    public void abrirSobre() {
         Intent intentAbertura = new Intent(this, SobreActivity.class);
         startActivity(intentAbertura);
 
@@ -188,7 +201,7 @@ public class AromasActivity extends AppCompatActivity {
             new ActivityResultCallback<ActivityResult>() {
                 @Override
                 public void onActivityResult(ActivityResult result) {
-                    if (result.getResultCode() == AromasActivity.RESULT_OK){
+                    if (result.getResultCode() == AromasActivity.RESULT_OK) {
                         Intent intent = result.getData();
 
                         Bundle bundle = intent.getExtras();
@@ -205,20 +218,20 @@ public class AromasActivity extends AppCompatActivity {
                             String notaDeBase = bundle.getString(AromaLibraryActivity.KEY_BASE);
                             String notaDeFundo = bundle.getString(AromaLibraryActivity.KEY_FUNDO);
 
-                            Aroma aromaNovo = new Aroma(aromaNome, favorito,Longevidade.valueOf(longevidade),Projecao.valueOf(projecao),
-                                    Genero.valueOf(genero),indicacaoAroma, tipoAroma, notaDeSaida, notaDeBase, notaDeFundo) ;
+                            Aroma aromaNovo = new Aroma(aromaNome, favorito, Longevidade.valueOf(longevidade), Projecao.valueOf(projecao),
+                                    Genero.valueOf(genero), indicacaoAroma, tipoAroma, notaDeSaida, notaDeBase, notaDeFundo);
 
                             listaAromas.add(aromaNovo);
-                            Collections.sort(listaAromas,Aroma.ordenacaoCrescente);
-                            adapterAroma.notifyDataSetChanged();
+                            ordenarLista();
 
                         }
                     }
                 }
             });
-    public void abrirAdicionar(){
 
-        Intent intentAbertura = new Intent(this,AromaLibraryActivity.class);
+    public void abrirAdicionar() {
+
+        Intent intentAbertura = new Intent(this, AromaLibraryActivity.class);
         intentAbertura.putExtra(AromaLibraryActivity.KEY_MODO, AromaLibraryActivity.MODO_NOVO);
         laucherNovoAroma.launch(intentAbertura);
 
@@ -228,6 +241,13 @@ public class AromasActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.aromas_opcoes, menu);
+        menuItemOrdenacao = menu.findItem(R.id.menuItemOrdenacao);
+        return true;
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        atualizarIconeOrdenacao();
         return true;
     }
 
@@ -235,13 +255,18 @@ public class AromasActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int idMenuItem = item.getItemId();
-        if (idMenuItem == R.id.menuItemAdicionar){
+        if (idMenuItem == R.id.menuItemAdicionar) {
             abrirAdicionar();
             return true;
-        }else if (idMenuItem == R.id.menuItemSobre){
+        } else if (idMenuItem == R.id.menuItemSobre) {
             abrirSobre();
             return true;
-        }else {
+        } else if (idMenuItem == R.id.menuItemOrdenacao) {
+            salvarPreferenciasOrdenacao(!ordenacaoAscendente);
+            atualizarIconeOrdenacao();
+            ordenarLista();
+            return true;
+        } else {
             return super.onOptionsItemSelected(item);
         }
     }
@@ -257,27 +282,26 @@ public class AromasActivity extends AppCompatActivity {
     */
 
 
-    private void  excluirAroma(){
+    private void excluirAroma() {
         listaAromas.remove(posicaoSelecionada);
         adapterAroma.notifyDataSetChanged();
     }
 
-    private void editarAroma(){
-
+    private void editarAroma() {
 
         Aroma aromaEditar = listaAromas.get(posicaoSelecionada);
-        Intent intentAbertura =  new Intent(this, AromaLibraryActivity.class);
+        Intent intentAbertura = new Intent(this, AromaLibraryActivity.class);
         intentAbertura.putExtra(AromaLibraryActivity.KEY_MODO, AromaLibraryActivity.MODO_EDITAR);
-        intentAbertura.putExtra(AromaLibraryActivity.KEY_AROMA ,aromaEditar.getNome());
-        intentAbertura.putExtra(AromaLibraryActivity.KEY_FAVORITO ,aromaEditar.isFavoritos());
-        intentAbertura.putExtra(AromaLibraryActivity.KEY_LONGEVIDADE ,aromaEditar.getLongevidade().toString());
-        intentAbertura.putExtra(AromaLibraryActivity.KEY_PROJECAO ,aromaEditar.getProjecao().toString());
-        intentAbertura.putExtra(AromaLibraryActivity.KEY_GENERO ,aromaEditar.getGenero().toString());
-        intentAbertura.putExtra(AromaLibraryActivity.KEY_INDICACAO ,aromaEditar.getIndicacao());
-        intentAbertura.putExtra(AromaLibraryActivity.KEY_TIPO ,aromaEditar.getTipoDeAroma());
-        intentAbertura.putExtra(AromaLibraryActivity.KEY_SAIDA ,aromaEditar.getPiramideOlfativaSaida());
-        intentAbertura.putExtra(AromaLibraryActivity.KEY_BASE ,aromaEditar.getPiramideOlfativaCorpo());
-        intentAbertura.putExtra(AromaLibraryActivity.KEY_FUNDO ,aromaEditar.getPiramideOlfativaFundo());
+        intentAbertura.putExtra(AromaLibraryActivity.KEY_AROMA, aromaEditar.getNome());
+        intentAbertura.putExtra(AromaLibraryActivity.KEY_FAVORITO, aromaEditar.isFavoritos());
+        intentAbertura.putExtra(AromaLibraryActivity.KEY_LONGEVIDADE, aromaEditar.getLongevidade().toString());
+        intentAbertura.putExtra(AromaLibraryActivity.KEY_PROJECAO, aromaEditar.getProjecao().toString());
+        intentAbertura.putExtra(AromaLibraryActivity.KEY_GENERO, aromaEditar.getGenero().toString());
+        intentAbertura.putExtra(AromaLibraryActivity.KEY_INDICACAO, aromaEditar.getIndicacao());
+        intentAbertura.putExtra(AromaLibraryActivity.KEY_TIPO, aromaEditar.getTipoDeAroma());
+        intentAbertura.putExtra(AromaLibraryActivity.KEY_SAIDA, aromaEditar.getPiramideOlfativaSaida());
+        intentAbertura.putExtra(AromaLibraryActivity.KEY_BASE, aromaEditar.getPiramideOlfativaCorpo());
+        intentAbertura.putExtra(AromaLibraryActivity.KEY_FUNDO, aromaEditar.getPiramideOlfativaFundo());
         laucherEditarAroma.launch(intentAbertura);
     }
 
@@ -285,7 +309,7 @@ public class AromasActivity extends AppCompatActivity {
             new ActivityResultCallback<ActivityResult>() {
                 @Override
                 public void onActivityResult(ActivityResult result) {
-                    if (result.getResultCode() == AromasActivity.RESULT_OK){
+                    if (result.getResultCode() == AromasActivity.RESULT_OK) {
                         Intent intent = result.getData();
 
                         Bundle bundle = intent.getExtras();
@@ -315,14 +339,12 @@ public class AromasActivity extends AppCompatActivity {
                             aromaEditado.setPiramideOlfativaCorpo(notaDeBase);
                             aromaEditado.setPiramideOlfativaFundo(notaDeFundo);
 
-                            Collections.sort(listaAromas,Aroma.ordenacaoCrescente);
-
-                            adapterAroma.notifyDataSetChanged();
+                            ordenarLista();
 
                         }
                     }
                     posicaoSelecionada = -1;
-                    if (actionMode!=null){
+                    if (actionMode != null) {
                         actionMode.finish();
                     }
                 }
@@ -345,4 +367,39 @@ public class AromasActivity extends AppCompatActivity {
     }
 
  */
+
+    private void lerPreferencias() {
+        SharedPreferences shared = getSharedPreferences(ARQUIVO_PREFERENCIAS, Context.MODE_PRIVATE);
+        ordenacaoAscendente = shared.getBoolean(KEY_ORDENACA_ASCENDENTE, ordenacaoAscendente);
+
+    }
+
+    private void salvarPreferenciasOrdenacao(boolean novoValor) {
+        SharedPreferences shared = getSharedPreferences(ARQUIVO_PREFERENCIAS, Context.MODE_PRIVATE);
+
+        SharedPreferences.Editor editor = shared.edit();
+        editor.putBoolean(KEY_ORDENACA_ASCENDENTE, novoValor);
+        editor.commit();
+
+        ordenacaoAscendente = novoValor;
+    }
+
+    private void ordenarLista() {
+        if (ordenacaoAscendente) {
+            Collections.sort(listaAromas, Aroma.ordenacaoCrescente);
+
+        } else {
+            Collections.sort(listaAromas, Aroma.ordenacaoDecrescente);
+        }
+        adapterAroma.notifyDataSetChanged();
+    }
+
+    private void atualizarIconeOrdenacao(){
+        if(ordenacaoAscendente) {
+            menuItemOrdenacao.setIcon(android.R.drawable.arrow_down_float);
+        } else {
+            menuItemOrdenacao.setIcon(android.R.drawable.arrow_up_float);
+        }
+    }
 }
+

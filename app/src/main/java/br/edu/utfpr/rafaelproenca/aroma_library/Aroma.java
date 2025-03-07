@@ -14,6 +14,12 @@ public class Aroma {
             return aroma1.getNome().compareToIgnoreCase(aroma2.getNome());
         }
     };
+    public static Comparator<Aroma> ordenacaoDecrescente = new Comparator<Aroma>() {
+        @Override
+        public int compare(Aroma aroma1, Aroma aroma2) {
+            return -1 * aroma1.getNome().compareToIgnoreCase(aroma2.getNome());
+        }
+    };
     private String nome;
     private boolean favoritos;
     private Longevidade longevidade;
