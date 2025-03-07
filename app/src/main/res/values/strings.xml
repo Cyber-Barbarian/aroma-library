@@ -100,5 +100,7 @@
     <string name="editar_aroma">Editar aroma</string>
     <string name="sugerir_tipo">Sugerir Tipo</string>
     <string name="ordenacao">Ordenação</string>
+    <string name="restaurar_padroes">Restaurar Padrões</string>
+    <string name="configuracoes_retornaram_ao_padrao_de_fabrica">Configurações retornaram ao padrão de fábrica!</string>
 
 </resources>

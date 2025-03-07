@@ -46,8 +46,10 @@ public class AromasActivity extends AppCompatActivity {
     private Drawable backgroundDrawable;
 
     public static final String ARQUIVO_PREFERENCIAS = "br.edu.utfpr.rafaelproenca.aroma_library.preferencias";
-    public static final String KEY_ORDENACA_ASCENDENTE = "ORDENACAO_ASCENDENTE";
-    private boolean ordenacaoAscendente = true;
+    public static final String KEY_ORDENACAO_ASCENDENTE = "ORDENACAO_ASCENDENTE";
+
+    public static final boolean PADRAO_INICIAL_ORDENACAO_ASCENDENTE = true;
+    private boolean ordenacaoAscendente = PADRAO_INICIAL_ORDENACAO_ASCENDENTE;
 
     private MenuItem menuItemOrdenacao;
 
@@ -266,7 +268,17 @@ public class AromasActivity extends AppCompatActivity {
             atualizarIconeOrdenacao();
             ordenarLista();
             return true;
-        } else {
+        } else if (idMenuItem == R.id.menuItemRestaurar){
+            restaurarPadroes();
+            atualizarIconeOrdenacao();
+            ordenarLista();
+
+            Toast.makeText(this,
+                    R.string.configuracoes_retornaram_ao_padrao_de_fabrica, Toast.LENGTH_LONG).show();
+
+            return true;
+        }
+        else{
             return super.onOptionsItemSelected(item);
         }
     }
@@ -370,7 +382,7 @@ public class AromasActivity extends AppCompatActivity {
 
     private void lerPreferencias() {
         SharedPreferences shared = getSharedPreferences(ARQUIVO_PREFERENCIAS, Context.MODE_PRIVATE);
-        ordenacaoAscendente = shared.getBoolean(KEY_ORDENACA_ASCENDENTE, ordenacaoAscendente);
+        ordenacaoAscendente = shared.getBoolean(KEY_ORDENACAO_ASCENDENTE, ordenacaoAscendente);
 
     }
 
@@ -378,7 +390,7 @@ public class AromasActivity extends AppCompatActivity {
         SharedPreferences shared = getSharedPreferences(ARQUIVO_PREFERENCIAS, Context.MODE_PRIVATE);
 
         SharedPreferences.Editor editor = shared.edit();
-        editor.putBoolean(KEY_ORDENACA_ASCENDENTE, novoValor);
+        editor.putBoolean(KEY_ORDENACAO_ASCENDENTE, novoValor);
         editor.commit();
 
         ordenacaoAscendente = novoValor;
@@ -400,6 +412,22 @@ public class AromasActivity extends AppCompatActivity {
         } else {
             menuItemOrdenacao.setIcon(android.R.drawable.arrow_up_float);
         }
+    }
+
+    private void restaurarPadroes(){
+
+        SharedPreferences shared = getSharedPreferences(ARQUIVO_PREFERENCIAS, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = shared.edit();
+        /*
+        editor.remove(KEY_ORDENACA_ASCENDENTE);
+        editor.remove(AromaLibraryActivity.KEY_SUGERIR_TIPO);
+        editor.remove(AromaLibraryActivity.KEY_ULTIMO_TIPO);
+         */
+        editor.clear();
+        editor.commit();
+
+        ordenacaoAscendente = PADRAO_INICIAL_ORDENACAO_ASCENDENTE;
+
     }
 }
 

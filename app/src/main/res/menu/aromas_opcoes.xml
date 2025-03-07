@@ -16,5 +16,8 @@
         <item
             android:id="@+id/menuItemSobre"
             android:title="@string/sobre" />
+        <item
+            android:id="@+id/menuItemRestaurar"
+            android:title="@string/restaurar_padroes" />
     </group>
 </menu>
