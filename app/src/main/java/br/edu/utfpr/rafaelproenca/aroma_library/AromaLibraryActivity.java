@@ -55,7 +55,7 @@ public class AromaLibraryActivity extends AppCompatActivity {
     private boolean sugerirTipo = false;
     private int ultimoTipo = 0;
 
-    public String removerAcentos(String str) {
+    public static String removerAcentos(String str) {
         return Normalizer.normalize(str, Normalizer.Form.NFD)
                 .replaceAll("[\\p{InCombiningDiacriticalMarks}]", "");
     }
@@ -105,8 +105,10 @@ public class AromaLibraryActivity extends AppCompatActivity {
                 String notaDeBase = bundle.getString(AromaLibraryActivity.KEY_BASE);
                 String notaDeFundo = bundle.getString(AromaLibraryActivity.KEY_FUNDO);
 
-                aromaOriginal = new Aroma(aromaNome, favorito,Longevidade.valueOf(longevidade),Projecao.valueOf(projecao),
-                        Genero.valueOf(genero),indicacaoAroma, tipoAroma, notaDeSaida, notaDeBase, notaDeFundo) ;
+
+                System.out.println("TESTE2"+longevidade);
+                aromaOriginal = new Aroma(aromaNome, favorito,Longevidade.valueOf(enumTranslator(longevidade)),Projecao.valueOf(enumTranslator(projecao)),
+                        Genero.valueOf(enumTranslator(genero)),indicacaoAroma, tipoAroma, notaDeSaida, notaDeBase, notaDeFundo) ;
 
 
                 editTextAroma.setText(aromaNome);
@@ -115,36 +117,35 @@ public class AromaLibraryActivity extends AppCompatActivity {
                 editTextTextNotasDeFundo.setText(notaDeFundo);
                 checkBoxFavoritos.setChecked(favorito);
 
-                //continuar
-                if (longevidade.equalsIgnoreCase(String.valueOf(Longevidade.Curta))) {
+                if (longevidade.equalsIgnoreCase(getResources().getString(R.string.curta)) || longevidade.equalsIgnoreCase(String.valueOf(Longevidade.Curta))) {
                     radioButtonLongevidadeId = findViewById(R.id.radioButtonCurta);
                     radioButtonLongevidadeId.setChecked(true);
-                } else if (longevidade.equalsIgnoreCase(String.valueOf(Longevidade.Media))) {
+                } else if (longevidade.equalsIgnoreCase(getResources().getString(R.string.media)) || longevidade.equalsIgnoreCase(String.valueOf(Longevidade.Media))) {
                     radioButtonLongevidadeId = findViewById(R.id.radioButtonMedia);
                     radioButtonLongevidadeId.setChecked(true);
-                } else if (longevidade.equalsIgnoreCase(String.valueOf(Longevidade.Longa))) {
+                } else if (longevidade.equalsIgnoreCase(getResources().getString(R.string.longa)) || longevidade.equalsIgnoreCase(String.valueOf(Longevidade.Longa))) {
                     radioButtonLongevidadeId = findViewById(R.id.radioButtonLonga);
                     radioButtonLongevidadeId.setChecked(true);
                 }
 
-                if (projecao.equalsIgnoreCase(String.valueOf(Projecao.Fraca))) {
+                if (projecao.equalsIgnoreCase(getResources().getString(R.string.fraca)) || projecao.equalsIgnoreCase(String.valueOf(Projecao.Fraca))) {
                     radioButtonProjecaoId = findViewById(R.id.radioButtonFraca);
                     radioButtonProjecaoId.setChecked(true);
-                } else if (projecao.equalsIgnoreCase(String.valueOf(Projecao.Moderada))) {
+                } else if (projecao.equalsIgnoreCase(getResources().getString(R.string.moderada)) || projecao.equalsIgnoreCase(String.valueOf(Projecao.Moderada))) {
                     radioButtonProjecaoId = findViewById(R.id.radioButtonModerada);
                     radioButtonProjecaoId.setChecked(true);
-                } else if (projecao.equalsIgnoreCase(String.valueOf(Projecao.Forte))) {
+                } else if (projecao.equalsIgnoreCase(getResources().getString(R.string.forte)) || projecao.equalsIgnoreCase(String.valueOf(Projecao.Forte))) {
                     radioButtonProjecaoId = findViewById(R.id.radioButtonForte);
                     radioButtonProjecaoId.setChecked(true);
                 }
 
-                if (genero.equalsIgnoreCase(String.valueOf(Genero.Masculino))) {
+                if (genero.equalsIgnoreCase(getResources().getString(R.string.radioButtonMasculino)) || genero.equalsIgnoreCase(String.valueOf(Genero.Masculino))) {
                     radioButtonGeneroId = findViewById(R.id.radioButtonMasculino);
                     radioButtonGeneroId.setChecked(true);
-                } else if (genero.equalsIgnoreCase(String.valueOf(Genero.Feminino))) {
+                } else if (genero.equalsIgnoreCase(getResources().getString(R.string.radioButtonFeminino)) || genero.equalsIgnoreCase(String.valueOf(Genero.Feminino))) {
                     radioButtonGeneroId = findViewById(R.id.radioButtonFeminino);
                     radioButtonGeneroId.setChecked(true);
-                } else if (genero.equalsIgnoreCase(String.valueOf(Genero.Unissex))) {
+                } else if (genero.equalsIgnoreCase(getResources().getString(R.string.radioButtonUnissex)) || genero.equalsIgnoreCase(String.valueOf(Genero.Unissex))) {
                     radioButtonGeneroId = findViewById(R.id.radioButtonUnissex);
                     radioButtonGeneroId.setChecked(true);
                 }
@@ -300,9 +301,9 @@ public class AromaLibraryActivity extends AppCompatActivity {
         if (modo == MODO_EDITAR &&
                 aroma.equalsIgnoreCase(aromaOriginal.getNome()) &&
                 favorito == aromaOriginal.isFavoritos() &&
-                Longevidade.valueOf(removerAcentos(longevidade)) == aromaOriginal.getLongevidade() &&
-                Projecao.valueOf(projecao) == aromaOriginal.getProjecao() &&
-                Genero.valueOf(genero) == aromaOriginal.getGenero() &&
+                Longevidade.valueOf(removerAcentos(enumTranslator(longevidade))) == aromaOriginal.getLongevidade() &&
+                Projecao.valueOf(enumTranslator(projecao)) == aromaOriginal.getProjecao() &&
+                Genero.valueOf(enumTranslator(genero)) == aromaOriginal.getGenero() &&
                 indicacaoAroma.equalsIgnoreCase(aromaOriginal.getIndicacao()) &&
                 tipoAroma == aromaOriginal.getTipoDeAroma() &&
                 notaDeSaida == aromaOriginal.getPiramideOlfativaSaida() &&
@@ -329,9 +330,9 @@ public class AromaLibraryActivity extends AppCompatActivity {
 
         intenResposta.putExtra(KEY_AROMA,aroma);
         intenResposta.putExtra(KEY_FAVORITO,favorito);
-        intenResposta.putExtra(KEY_LONGEVIDADE,removerAcentos(longevidade));
-        intenResposta.putExtra(KEY_PROJECAO,removerAcentos(projecao));
-        intenResposta.putExtra(KEY_GENERO,removerAcentos(genero));
+        intenResposta.putExtra(KEY_LONGEVIDADE,enumTranslator(longevidade));
+        intenResposta.putExtra(KEY_PROJECAO,enumTranslator(projecao));
+        intenResposta.putExtra(KEY_GENERO,enumTranslator(genero));
         intenResposta.putExtra(KEY_INDICACAO,indicacaoAroma);
         intenResposta.putExtra(KEY_TIPO,tipoAroma);
         intenResposta.putExtra(KEY_SAIDA,notaDeSaida);
@@ -402,5 +403,30 @@ public class AromaLibraryActivity extends AppCompatActivity {
         editor.putInt(KEY_ULTIMO_TIPO, novovalor);
         editor.commit();
         ultimoTipo = novovalor;
+    }
+
+    private String enumTranslator(String valueEnum){
+        valueEnum = removerAcentos(valueEnum);
+        String translatedValueEnum = "";
+        if (valueEnum.equalsIgnoreCase(getResources().getString(R.string.curta)) || valueEnum.equalsIgnoreCase(String.valueOf(Longevidade.Curta))){
+            translatedValueEnum = String.valueOf(Longevidade.Curta);
+        } else if (valueEnum.equalsIgnoreCase(getResources().getString(R.string.media)) || valueEnum.equalsIgnoreCase(String.valueOf(Longevidade.Media))){
+            translatedValueEnum = String.valueOf(Longevidade.Media);
+        } else if (valueEnum.equalsIgnoreCase(getResources().getString(R.string.longa)) || valueEnum.equalsIgnoreCase(String.valueOf(Longevidade.Longa))){
+            translatedValueEnum = String.valueOf(Longevidade.Longa);
+        } else if (valueEnum.equalsIgnoreCase(getResources().getString(R.string.fraca))|| valueEnum.equalsIgnoreCase(String.valueOf(Projecao.Fraca))){
+            translatedValueEnum = String.valueOf(Projecao.Fraca);
+        } else if (valueEnum.equalsIgnoreCase(getResources().getString(R.string.moderada)) || valueEnum.equalsIgnoreCase(String.valueOf(Projecao.Moderada))){
+            translatedValueEnum = String.valueOf(Projecao.Moderada);
+        } else if (valueEnum.equalsIgnoreCase(getResources().getString(R.string.forte)) || valueEnum.equalsIgnoreCase(String.valueOf(Projecao.Forte))){
+            translatedValueEnum = String.valueOf(Projecao.Forte);
+        } else if (valueEnum.equalsIgnoreCase(getResources().getString(R.string.radioButtonMasculino)) || valueEnum.equalsIgnoreCase(String.valueOf(Genero.Masculino))){
+            translatedValueEnum = String.valueOf(Genero.Masculino);
+        } else if (valueEnum.equalsIgnoreCase(getResources().getString(R.string.radioButtonFeminino)) || valueEnum.equalsIgnoreCase(String.valueOf(Genero.Feminino))){
+            translatedValueEnum = String.valueOf(Genero.Feminino);
+        } else if (valueEnum.equalsIgnoreCase(getResources().getString(R.string.radioButtonUnissex)) || valueEnum.equalsIgnoreCase(String.valueOf(Genero.Unissex))){
+            translatedValueEnum = String.valueOf(Genero.Unissex);
+        }
+            return translatedValueEnum;
     }
 }
