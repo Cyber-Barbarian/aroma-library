@@ -3,6 +3,7 @@ package br.edu.utfpr.rafaelproenca.aroma_library;
 import static br.edu.utfpr.rafaelproenca.aroma_library.AromaLibraryActivity.removerAcentos;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -33,7 +34,7 @@ import java.util.List;
 import br.edu.utfpr.rafaelproenca.aroma_library.enums.Genero;
 import br.edu.utfpr.rafaelproenca.aroma_library.enums.Longevidade;
 import br.edu.utfpr.rafaelproenca.aroma_library.enums.Projecao;
-
+import br.edu.utfpr.rafaelproenca.aroma_library.utils.UtilsAlert;
 
 
 public class AromasActivity extends AppCompatActivity {
@@ -87,7 +88,7 @@ public class AromasActivity extends AppCompatActivity {
                 return true;
             } else if (idMenuItem == R.id.menuItemExcluir) {
                 excluirAroma();
-                mode.finish();
+
                 return true;
             } else {
                 //return super.onContextItemSelected(item);
@@ -301,8 +302,22 @@ public class AromasActivity extends AppCompatActivity {
 
 
     private void excluirAroma() {
-        listaAromas.remove(posicaoSelecionada);
-        adapterAroma.notifyDataSetChanged();
+        Aroma aroma = listaAromas.get(posicaoSelecionada);
+
+        String mensagem = getString(R.string.deseja_deletar) + aroma.getNome() + "\"";
+
+        DialogInterface.OnClickListener listenerSim = new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                listaAromas.remove(posicaoSelecionada);
+                adapterAroma.notifyDataSetChanged();
+                actionMode.finish();
+            }
+        };
+
+        UtilsAlert.confirmarAcao(this, mensagem, listenerSim, null);
+
+
     }
 
     private void editarAroma() {
@@ -422,6 +437,8 @@ public class AromasActivity extends AppCompatActivity {
             menuItemOrdenacao.setIcon(android.R.drawable.arrow_up_float);
         }
     }
+
+
 
     private void restaurarPadroes(){
 

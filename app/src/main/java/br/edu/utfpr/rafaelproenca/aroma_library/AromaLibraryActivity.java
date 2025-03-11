@@ -22,6 +22,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import br.edu.utfpr.rafaelproenca.aroma_library.enums.Genero;
 import br.edu.utfpr.rafaelproenca.aroma_library.enums.Longevidade;
 import br.edu.utfpr.rafaelproenca.aroma_library.enums.Projecao;
+import br.edu.utfpr.rafaelproenca.aroma_library.utils.UtilsAlert;
 
 public class AromaLibraryActivity extends AppCompatActivity {
     public static final String KEY_AROMA = "KEY_AROMA";
@@ -220,7 +221,8 @@ public class AromaLibraryActivity extends AppCompatActivity {
         spinnerIndicacao.setSelection(0);
 
         editTextAroma.requestFocus();
-        Toast.makeText(this, R.string.as_entradas_foram_apagadas, Toast.LENGTH_LONG).show();
+        //Toast.makeText(this, R.string.as_entradas_foram_apagadas, Toast.LENGTH_LONG).show();
+        UtilsAlert.mostrarAviso(this,R.string.as_entradas_foram_apagadas);
     }
 
     public void salvarValores() {
@@ -231,7 +233,8 @@ public class AromaLibraryActivity extends AppCompatActivity {
 
         //nome do aroma
         if (aroma == null || aroma.isEmpty()) {
-            Toast.makeText(this, R.string.digite_um_valor_valido, Toast.LENGTH_LONG).show();
+            UtilsAlert.mostrarAviso(this,R.string.digite_um_valor_valido);
+            //Toast.makeText(this, R.string.digite_um_valor_valido, Toast.LENGTH_LONG).show();
             editTextAroma.setText(null);
             editTextAroma.requestFocus();
             return;
@@ -250,7 +253,8 @@ public class AromaLibraryActivity extends AppCompatActivity {
         } else if (radioButtonLongevidadeId == R.id.radioButtonLonga) {
             longevidade = getString(R.string.longa);
         } else {
-            Toast.makeText(this, R.string.faltou_preencher_a_longevidade_do_aroma, Toast.LENGTH_LONG).show();
+            //Toast.makeText(this, R.string.faltou_preencher_a_longevidade_do_aroma, Toast.LENGTH_LONG).show();
+            UtilsAlert.mostrarAviso(this,R.string.faltou_preencher_a_longevidade_do_aroma);
             return;
         }
 
@@ -264,7 +268,8 @@ public class AromaLibraryActivity extends AppCompatActivity {
         } else if (radioButtonProjecaoId == R.id.radioButtonForte) {
             projecao = getString(R.string.forte);
         } else {
-            Toast.makeText(this, R.string.faltou_preencher_a_projecao_do_aroma, Toast.LENGTH_LONG).show();
+            //Toast.makeText(this, R.string.faltou_preencher_a_projecao_do_aroma, Toast.LENGTH_LONG).show();
+            UtilsAlert.mostrarAviso(this,R.string.faltou_preencher_a_projecao_do_aroma);
             return;
         }
 
@@ -278,7 +283,8 @@ public class AromaLibraryActivity extends AppCompatActivity {
         } else if (radioButtonGeneroId == R.id.radioButtonUnissex) {
             genero = getString(R.string.radioButtonUnissex);
         } else {
-            Toast.makeText(this, R.string.faltou_preencher_o_genero_do_aroma, Toast.LENGTH_LONG).show();
+            //Toast.makeText(this, R.string.faltou_preencher_o_genero_do_aroma, Toast.LENGTH_LONG).show();
+            UtilsAlert.mostrarAviso(this,R.string.faltou_preencher_o_genero_do_aroma);
             return;
         }
 
@@ -286,7 +292,8 @@ public class AromaLibraryActivity extends AppCompatActivity {
         String indicacaoAroma = (String) spinnerIndicacao.getSelectedItem();
 
         if (indicacaoAroma == null || indicacaoAroma == getString(R.string.spinner_indicacao_hint)) {
-            Toast.makeText(this, getString(R.string.faltou_selecionar_a_indicacao_do_aroma), Toast.LENGTH_LONG).show();
+            //Toast.makeText(this, getString(R.string.faltou_selecionar_a_indicacao_do_aroma), Toast.LENGTH_LONG).show();
+            UtilsAlert.mostrarAviso(this,R.string.faltou_selecionar_a_indicacao_do_aroma);
             return;
         }
 
@@ -294,7 +301,8 @@ public class AromaLibraryActivity extends AppCompatActivity {
         String tipoAroma = (String) spinnerTipoAroma.getSelectedItem();
 
         if (tipoAroma == null || tipoAroma == getString(R.string.spinner_aroma_hint)) {
-            Toast.makeText(this, getString(R.string.faltou_selecionar_o_tipo_de_aroma), Toast.LENGTH_LONG).show();
+            //Toast.makeText(this, getString(R.string.faltou_selecionar_o_tipo_de_aroma), Toast.LENGTH_LONG).show();
+            UtilsAlert.mostrarAviso(this,R.string.faltou_selecionar_o_tipo_de_aroma);
             return;
         }
 
