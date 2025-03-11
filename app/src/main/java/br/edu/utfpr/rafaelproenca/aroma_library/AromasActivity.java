@@ -276,12 +276,8 @@ public class AromasActivity extends AppCompatActivity {
             ordenarLista();
             return true;
         } else if (idMenuItem == R.id.menuItemRestaurar){
-            restaurarPadroes();
-            atualizarIconeOrdenacao();
-            ordenarLista();
 
-            Toast.makeText(this,
-                    R.string.configuracoes_retornaram_ao_padrao_de_fabrica, Toast.LENGTH_LONG).show();
+            confirmarRestaurarPadroes();
 
             return true;
         }
@@ -304,7 +300,9 @@ public class AromasActivity extends AppCompatActivity {
     private void excluirAroma() {
         Aroma aroma = listaAromas.get(posicaoSelecionada);
 
-        String mensagem = getString(R.string.deseja_deletar) + aroma.getNome() + "\"";
+        //String mensagem = getString(R.string.deseja_deletar) + aroma.getNome() + "\"";
+
+        String mensagem = getString(R.string.deseja_deletar,aroma.getNome().toString()) ;
 
         DialogInterface.OnClickListener listenerSim = new DialogInterface.OnClickListener() {
             @Override
@@ -439,7 +437,22 @@ public class AromasActivity extends AppCompatActivity {
     }
 
 
+    private void confirmarRestaurarPadroes(){
+        DialogInterface.OnClickListener listenerSim = new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
 
+                restaurarPadroes();
+                atualizarIconeOrdenacao();
+                ordenarLista();
+
+                Toast.makeText(AromasActivity.this,
+                        R.string.configuracoes_retornaram_ao_padrao_de_fabrica, Toast.LENGTH_LONG).show();
+
+            }
+        };
+        UtilsAlert.confirmarAcao(this, getString(R.string.do_you_want_to_restore_defaults), listenerSim, null );
+    }
     private void restaurarPadroes(){
 
         SharedPreferences shared = getSharedPreferences(ARQUIVO_PREFERENCIAS, Context.MODE_PRIVATE);

@@ -106,5 +106,6 @@
     <string name="alerta_de_confirmacao">Confirmation Alert!</string>
     <string name="sim">Yes</string>
     <string name="nao">No</string>
-    <string name="deseja_deletar">Do you want to delete?\n\"</string>
+    <string name="deseja_deletar">Do you want to delete?\n\"%1$s\"</string>
+    <string name="do_you_want_to_restore_defaults">Do you want to restore defaults?</string>
 </resources>

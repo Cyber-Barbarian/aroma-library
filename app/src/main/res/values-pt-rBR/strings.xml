@@ -103,5 +103,12 @@
     <string name="ordenacao">Ordenação</string>
     <string name="restaurar_padroes">Restaurar Padrões</string>
     <string name="configuracoes_retornaram_ao_padrao_de_fabrica">Configurações retornaram ao padrão de fábrica!</string>
+    <string name="aviso">Aviso</string>
+    <string name="ok">OK</string>
+    <string name="alerta_de_confirmacao">Alerta de Confirmação!</string>
+    <string name="sim">Sim</string>
+    <string name="nao">Não</string>
+    <string name="deseja_deletar">Deseja deletar?\n\"%1$s\"</string>
+    <string name="do_you_want_to_restore_defaults">Deseja Restaurar Padrões?</string>
 
 </resources>
