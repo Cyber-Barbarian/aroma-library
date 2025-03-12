@@ -1,11 +1,18 @@
-package br.edu.utfpr.rafaelproenca.aroma_library;
+package br.edu.utfpr.rafaelproenca.aroma_library.modelo;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
 import java.util.Comparator;
 
-import br.edu.utfpr.rafaelproenca.aroma_library.enums.Genero;
-import br.edu.utfpr.rafaelproenca.aroma_library.enums.Longevidade;
-import br.edu.utfpr.rafaelproenca.aroma_library.enums.Projecao;
+import br.edu.utfpr.rafaelproenca.aroma_library.modelo.enums.Genero;
+import br.edu.utfpr.rafaelproenca.aroma_library.modelo.enums.Longevidade;
+import br.edu.utfpr.rafaelproenca.aroma_library.modelo.enums.Projecao;
 
+@Entity()
 public class Aroma {
 
     public static Comparator<Aroma> ordenacaoCrescente = new Comparator<Aroma>() {
@@ -20,16 +27,36 @@ public class Aroma {
             return -1 * aroma1.getNome().compareToIgnoreCase(aroma2.getNome());
         }
     };
+
+    // por padrão o room ja persiste todos os atributos não estáticos
+    //criaremos atributo para chave primária
+    @PrimaryKey(autoGenerate = true)
+    private long id;
+
+    @NonNull
+    @ColumnInfo(index = true) //indexar o campo nome melhora a performance da busca por nme
     private String nome;
     private boolean favoritos;
+    @NonNull
     private Longevidade longevidade;
+    @NonNull
     private Projecao projecao;
+    @NonNull
     private Genero genero;
+    @NonNull
     private String indicacao;
+    @NonNull
     private String tipoDeAroma;
+    //tipos contruídos como String e Enum podem vir nulos, só pra garantir que os obrigatórios nunca venham nulos usamos a anotação @NonNull
+    //@Nullable para os não obrigatórios
+    @Nullable
     private String piramideOlfativaSaida;
+    @Nullable
     private String piramideOlfativaCorpo;
+    @Nullable
     private String piramideOlfativaFundo;
+
+
 
     public Aroma(String nome, boolean favoritos, Longevidade longevidade, Projecao projecao, Genero genero, String indicacao, String tipoDeAroma, String piramideOlfativaSaida, String piramideOlfativaCorpo, String piramideOlfativaFundo) {
         this.nome = nome;
@@ -44,6 +71,15 @@ public class Aroma {
         this.piramideOlfativaFundo = piramideOlfativaFundo;
     }
 
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
     public String getNome() {
         return nome;
     }
@@ -52,7 +88,13 @@ public class Aroma {
         this.nome = nome;
     }
 
-    public boolean isFavoritos() {
+    /*public boolean isFavoritos() {
+        return favoritos;
+    }
+
+     */
+
+    public boolean getFavoritos() {
         return favoritos;
     }
 

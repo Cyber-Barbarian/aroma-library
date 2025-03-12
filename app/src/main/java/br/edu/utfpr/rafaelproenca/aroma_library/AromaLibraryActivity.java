@@ -14,14 +14,14 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import br.edu.utfpr.rafaelproenca.aroma_library.enums.Genero;
-import br.edu.utfpr.rafaelproenca.aroma_library.enums.Longevidade;
-import br.edu.utfpr.rafaelproenca.aroma_library.enums.Projecao;
+import br.edu.utfpr.rafaelproenca.aroma_library.modelo.enums.Genero;
+import br.edu.utfpr.rafaelproenca.aroma_library.modelo.enums.Longevidade;
+import br.edu.utfpr.rafaelproenca.aroma_library.modelo.enums.Projecao;
+import br.edu.utfpr.rafaelproenca.aroma_library.modelo.Aroma;
 import br.edu.utfpr.rafaelproenca.aroma_library.utils.UtilsAlert;
 
 public class AromaLibraryActivity extends AppCompatActivity {
@@ -308,7 +308,7 @@ public class AromaLibraryActivity extends AppCompatActivity {
 
         if (modo == MODO_EDITAR &&
                 aroma.equalsIgnoreCase(aromaOriginal.getNome()) &&
-                favorito == aromaOriginal.isFavoritos() &&
+                favorito == aromaOriginal.getFavoritos() &&
                 Longevidade.valueOf(removerAcentos(enumTranslator(longevidade))) == aromaOriginal.getLongevidade() &&
                 Projecao.valueOf(enumTranslator(projecao)) == aromaOriginal.getProjecao() &&
                 Genero.valueOf(enumTranslator(genero)) == aromaOriginal.getGenero() &&

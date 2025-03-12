@@ -29,6 +29,17 @@ android {
 }
 
 dependencies {
+    /*
+    //sqlite -> https://developer.android.com/training/data-storage/room?hl=pt-br#java
+    def room_version = "2.6.1"
+    implementation "androidx.room:room-runtime:$room_version"
+    annotationProcessor "androidx.room:room-compiler:$room_version"
+     */
+
+    //usando o arquivo libs.version.tom -> melhor opção
+    implementation libs.androidx.room.runtime
+    annotationProcessor libs.androidx.room.compiler
+
 
     implementation libs.appcompat
     implementation libs.material

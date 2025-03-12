@@ -9,6 +9,8 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import br.edu.utfpr.rafaelproenca.aroma_library.modelo.Aroma;
+
 public class AromaAdapter extends BaseAdapter {
 
     private Context context;
@@ -74,7 +76,7 @@ public class AromaAdapter extends BaseAdapter {
 
         holder.textViewValorNome.setText(aroma.getNome());
 
-        if (aroma.isFavoritos()) {
+        if (aroma.getFavoritos()) {
             holder.textViewValorFavorito.setText(R.string.perfume_favorito);
         } else {
             holder.textViewValorFavorito.setText(R.string.empty_message);

@@ -8,9 +8,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
-import android.graphics.drawable.Icon;
 import android.os.Bundle;
-import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -31,9 +29,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import br.edu.utfpr.rafaelproenca.aroma_library.enums.Genero;
-import br.edu.utfpr.rafaelproenca.aroma_library.enums.Longevidade;
-import br.edu.utfpr.rafaelproenca.aroma_library.enums.Projecao;
+import br.edu.utfpr.rafaelproenca.aroma_library.modelo.enums.Genero;
+import br.edu.utfpr.rafaelproenca.aroma_library.modelo.enums.Longevidade;
+import br.edu.utfpr.rafaelproenca.aroma_library.modelo.enums.Projecao;
+import br.edu.utfpr.rafaelproenca.aroma_library.modelo.Aroma;
 import br.edu.utfpr.rafaelproenca.aroma_library.utils.UtilsAlert;
 
 
@@ -327,7 +326,7 @@ public class AromasActivity extends AppCompatActivity {
         Intent intentAbertura = new Intent(this, AromaLibraryActivity.class);
         intentAbertura.putExtra(AromaLibraryActivity.KEY_MODO, AromaLibraryActivity.MODO_EDITAR);
         intentAbertura.putExtra(AromaLibraryActivity.KEY_AROMA, aromaEditar.getNome());
-        intentAbertura.putExtra(AromaLibraryActivity.KEY_FAVORITO, aromaEditar.isFavoritos());
+        intentAbertura.putExtra(AromaLibraryActivity.KEY_FAVORITO, aromaEditar.getFavoritos());
         intentAbertura.putExtra(AromaLibraryActivity.KEY_LONGEVIDADE, aromaEditar.getLongevidade().toString());
         intentAbertura.putExtra(AromaLibraryActivity.KEY_PROJECAO, aromaEditar.getProjecao().toString());
         intentAbertura.putExtra(AromaLibraryActivity.KEY_GENERO, aromaEditar.getGenero().toString());
