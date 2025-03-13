@@ -7,6 +7,7 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 import java.util.Comparator;
+import java.util.Objects;
 
 import br.edu.utfpr.rafaelproenca.aroma_library.modelo.enums.Genero;
 import br.edu.utfpr.rafaelproenca.aroma_library.modelo.enums.Longevidade;
@@ -180,5 +181,24 @@ public class Aroma {
                         piramideOlfativaCorpo + "\n" +
                         piramideOlfativaFundo
                 ;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Aroma aroma = (Aroma) o;
+        return favoritos == aroma.favoritos &&
+                nome.equals(aroma.nome)
+                && longevidade == aroma.longevidade && projecao == aroma.projecao && genero == aroma.genero &&
+                indicacao.equals(aroma.indicacao) && tipoDeAroma.equals(aroma.tipoDeAroma) &&
+                piramideOlfativaSaida.equals(aroma.piramideOlfativaSaida) &&
+                piramideOlfativaCorpo.equals(aroma.piramideOlfativaCorpo) &&
+                piramideOlfativaFundo.equals(aroma.piramideOlfativaFundo);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(favoritos, longevidade, projecao, genero, indicacao, tipoDeAroma, piramideOlfativaSaida, piramideOlfativaCorpo, piramideOlfativaFundo);
     }
 }
