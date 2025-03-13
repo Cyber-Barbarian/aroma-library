@@ -80,7 +80,7 @@
     <string name="nome_do_aroma">Name of the Aroma: </string>
     <string name="favorito">Favorite: </string>
     <string name="perfume_favorito">&#128153; Aroma among the favorites! &#128153;</string>
-    <string name="empty_message"></string>
+    <string name="empty_message">" "</string>
     <string name="foi_selecionado">"Selected!"</string>
     <string name="separator">-------- AROMA --------</string>
     <string name="logo_da_utfpr">UTFPR Logo</string>
@@ -108,4 +108,6 @@
     <string name="nao">No</string>
     <string name="deseja_deletar">Do you want to delete?\n\"%1$s\"</string>
     <string name="do_you_want_to_restore_defaults">Do you want to restore defaults?</string>
+    <string name="erro_na_operacao_escrita">Error on writing operation!</string>
+    <string name="erro_na_operacao_delete">Error on delete operation!</string>
 </resources>

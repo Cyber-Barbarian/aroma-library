@@ -33,6 +33,7 @@ import br.edu.utfpr.rafaelproenca.aroma_library.modelo.enums.Genero;
 import br.edu.utfpr.rafaelproenca.aroma_library.modelo.enums.Longevidade;
 import br.edu.utfpr.rafaelproenca.aroma_library.modelo.enums.Projecao;
 import br.edu.utfpr.rafaelproenca.aroma_library.modelo.Aroma;
+import br.edu.utfpr.rafaelproenca.aroma_library.persistencia.AromasDatabase;
 import br.edu.utfpr.rafaelproenca.aroma_library.utils.UtilsAlert;
 
 
@@ -141,7 +142,7 @@ public class AromasActivity extends AppCompatActivity {
 
     private void popularListaAromas() {
 
-        listaAromas = new ArrayList<>();
+        //listaAromas = new ArrayList<>();
         Aroma aroma;
         boolean favoritos;
         Longevidade longevidade;
@@ -151,6 +152,14 @@ public class AromasActivity extends AppCompatActivity {
         Genero genero;
         Genero[] generoArray = Genero.values();
 
+
+
+        AromasDatabase database = AromasDatabase.getInstance(this);
+        if(ordenacaoAscendente){
+            listaAromas = database.getAromaDao().queryAllAscending();
+        }else{
+            listaAromas = database.getAromaDao().queryAllDescending();
+        }
         adapterAroma = new AromaAdapter(this, listaAromas);
 
 
@@ -214,20 +223,11 @@ public class AromasActivity extends AppCompatActivity {
                         Bundle bundle = intent.getExtras();
 
                         if (bundle != null) {
-                            String aromaNome = bundle.getString(AromaLibraryActivity.KEY_AROMA);
-                            Boolean favorito = bundle.getBoolean(AromaLibraryActivity.KEY_FAVORITO);
-                            String longevidade = bundle.getString(AromaLibraryActivity.KEY_LONGEVIDADE);
-                            String projecao = bundle.getString(AromaLibraryActivity.KEY_PROJECAO);
-                            String genero = bundle.getString(AromaLibraryActivity.KEY_GENERO);
-                            String indicacaoAroma = bundle.getString(AromaLibraryActivity.KEY_INDICACAO);
-                            String tipoAroma = bundle.getString(AromaLibraryActivity.KEY_TIPO);
-                            String notaDeSaida = bundle.getString(AromaLibraryActivity.KEY_SAIDA);
-                            String notaDeBase = bundle.getString(AromaLibraryActivity.KEY_BASE);
-                            String notaDeFundo = bundle.getString(AromaLibraryActivity.KEY_FUNDO);
+                            long id =  bundle.getLong(AromaLibraryActivity.KEY_ID);
 
-                            System.out.println("LONGEVIDADE"+longevidade);
-                            Aroma aromaNovo = new Aroma(aromaNome, favorito, Longevidade.valueOf(enumTranslator(longevidade)), Projecao.valueOf(enumTranslator(projecao)),
-                                    Genero.valueOf(enumTranslator(genero)), indicacaoAroma, tipoAroma, notaDeSaida, notaDeBase, notaDeFundo);
+                            AromasDatabase database = AromasDatabase.getInstance(AromasActivity.this);
+
+                            Aroma aromaNovo = database.getAromaDao().queryForId(id);
 
                             listaAromas.add(aromaNovo);
                             ordenarLista();
@@ -297,7 +297,7 @@ public class AromasActivity extends AppCompatActivity {
 
 
     private void excluirAroma() {
-        Aroma aroma = listaAromas.get(posicaoSelecionada);
+        final Aroma aroma = listaAromas.get(posicaoSelecionada);
 
         //String mensagem = getString(R.string.deseja_deletar) + aroma.getNome() + "\"";
 
@@ -306,6 +306,15 @@ public class AromasActivity extends AppCompatActivity {
         DialogInterface.OnClickListener listenerSim = new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
+                AromasDatabase database = AromasDatabase.getInstance(AromasActivity.this);
+
+                int quantideDeletada = database.getAromaDao().delete(aroma);
+
+                if (quantideDeletada!=1){
+                    UtilsAlert.mostrarAviso(AromasActivity.this, R.string.erro_na_operacao_delete);
+                    return;
+                }
+
                 listaAromas.remove(posicaoSelecionada);
                 adapterAroma.notifyDataSetChanged();
                 actionMode.finish();
@@ -325,16 +334,8 @@ public class AromasActivity extends AppCompatActivity {
         System.out.println("aroma editar " + aromaEditar.getLongevidade().toString());
         Intent intentAbertura = new Intent(this, AromaLibraryActivity.class);
         intentAbertura.putExtra(AromaLibraryActivity.KEY_MODO, AromaLibraryActivity.MODO_EDITAR);
-        intentAbertura.putExtra(AromaLibraryActivity.KEY_AROMA, aromaEditar.getNome());
-        intentAbertura.putExtra(AromaLibraryActivity.KEY_FAVORITO, aromaEditar.getFavoritos());
-        intentAbertura.putExtra(AromaLibraryActivity.KEY_LONGEVIDADE, aromaEditar.getLongevidade().toString());
-        intentAbertura.putExtra(AromaLibraryActivity.KEY_PROJECAO, aromaEditar.getProjecao().toString());
-        intentAbertura.putExtra(AromaLibraryActivity.KEY_GENERO, aromaEditar.getGenero().toString());
-        intentAbertura.putExtra(AromaLibraryActivity.KEY_INDICACAO, aromaEditar.getIndicacao());
-        intentAbertura.putExtra(AromaLibraryActivity.KEY_TIPO, aromaEditar.getTipoDeAroma());
-        intentAbertura.putExtra(AromaLibraryActivity.KEY_SAIDA, aromaEditar.getPiramideOlfativaSaida());
-        intentAbertura.putExtra(AromaLibraryActivity.KEY_BASE, aromaEditar.getPiramideOlfativaCorpo());
-        intentAbertura.putExtra(AromaLibraryActivity.KEY_FUNDO, aromaEditar.getPiramideOlfativaFundo());
+        intentAbertura.putExtra(AromaLibraryActivity.KEY_ID, aromaEditar.getId());
+
         laucherEditarAroma.launch(intentAbertura);
     }
 
@@ -348,29 +349,19 @@ public class AromasActivity extends AppCompatActivity {
                         Bundle bundle = intent.getExtras();
 
                         if (bundle != null) {
-                            String aromaNome = bundle.getString(AromaLibraryActivity.KEY_AROMA);
-                            Boolean favorito = bundle.getBoolean(AromaLibraryActivity.KEY_FAVORITO);
-                            String longevidade = bundle.getString(AromaLibraryActivity.KEY_LONGEVIDADE);
-                            String projecao = bundle.getString(AromaLibraryActivity.KEY_PROJECAO);
-                            String genero = bundle.getString(AromaLibraryActivity.KEY_GENERO);
-                            String indicacaoAroma = bundle.getString(AromaLibraryActivity.KEY_INDICACAO);
-                            String tipoAroma = bundle.getString(AromaLibraryActivity.KEY_TIPO);
-                            String notaDeSaida = bundle.getString(AromaLibraryActivity.KEY_SAIDA);
-                            String notaDeBase = bundle.getString(AromaLibraryActivity.KEY_BASE);
-                            String notaDeFundo = bundle.getString(AromaLibraryActivity.KEY_FUNDO);
 
-                            Aroma aromaEditado = listaAromas.get(posicaoSelecionada);
+                            final Aroma aromaOriginal = listaAromas.get(posicaoSelecionada);
 
-                            aromaEditado.setNome(aromaNome);
-                            aromaEditado.setFavoritos(favorito);
-                            aromaEditado.setLongevidade(Longevidade.valueOf(enumTranslator(longevidade)));
-                            aromaEditado.setProjecao(Projecao.valueOf(enumTranslator(projecao)));
-                            aromaEditado.setGenero(Genero.valueOf(enumTranslator(genero)));
-                            aromaEditado.setIndicacao(indicacaoAroma);
-                            aromaEditado.setTipoDeAroma(tipoAroma);
-                            aromaEditado.setPiramideOlfativaSaida(notaDeSaida);
-                            aromaEditado.setPiramideOlfativaCorpo(notaDeBase);
-                            aromaEditado.setPiramideOlfativaFundo(notaDeFundo);
+
+                            long id =  bundle.getLong(AromaLibraryActivity.KEY_ID);
+
+                            AromasDatabase database = AromasDatabase.getInstance(AromasActivity.this);
+
+                            final Aroma aromaEditado = database.getAromaDao().queryForId(id);
+
+                            //Aroma aromaEditado = listaAromas.get(posicaoSelecionada);
+
+                            listaAromas.set(posicaoSelecionada,aromaEditado);
 
                             ordenarLista();
 

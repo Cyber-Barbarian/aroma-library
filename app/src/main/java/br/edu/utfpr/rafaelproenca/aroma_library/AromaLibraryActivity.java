@@ -26,20 +26,6 @@ import br.edu.utfpr.rafaelproenca.aroma_library.persistencia.AromasDatabase;
 import br.edu.utfpr.rafaelproenca.aroma_library.utils.UtilsAlert;
 
 public class AromaLibraryActivity extends AppCompatActivity {
-    /*
-    public static final String KEY_AROMA = "KEY_AROMA";
-    public static final String KEY_FAVORITO = "KEY_FAVORITO";
-
-    public static final String KEY_LONGEVIDADE = "KEY_LONGEVIDADE";
-    public static final String KEY_PROJECAO = "KEY_PROJECAO";
-    public static final String KEY_GENERO = "KEY_GENERO";
-    public static final String KEY_INDICACAO = "KEY_INDICACAO";
-    public static final String KEY_TIPO = "KEY_TIPO";
-    public static final String KEY_SAIDA = "KEY_SAIDA";
-    public static final String KEY_BASE = "KEY_BASE";
-    public static final String KEY_FUNDO = "KEY_FUNDO";
-
-     */
     public static final String KEY_ID = "ID";
     //ação editar
     public static final String KEY_MODO = "MODO";
@@ -105,24 +91,6 @@ public class AromaLibraryActivity extends AppCompatActivity {
                 AromasDatabase database = AromasDatabase.getInstance(this);
 
                 aromaOriginal = database.getAromaDao().queryForId(id);
-
-                /*String aromaNome = bundle.getString(AromaLibraryActivity.KEY_AROMA);
-                Boolean favorito = bundle.getBoolean(AromaLibraryActivity.KEY_FAVORITO);
-                String longevidade = bundle.getString(AromaLibraryActivity.KEY_LONGEVIDADE);
-                String projecao = bundle.getString(AromaLibraryActivity.KEY_PROJECAO);
-                String genero = bundle.getString(AromaLibraryActivity.KEY_GENERO);
-                String indicacaoAroma = bundle.getString(AromaLibraryActivity.KEY_INDICACAO);
-                String tipoAroma = bundle.getString(AromaLibraryActivity.KEY_TIPO);
-                String notaDeSaida = bundle.getString(AromaLibraryActivity.KEY_SAIDA);
-                String notaDeBase = bundle.getString(AromaLibraryActivity.KEY_BASE);
-                String notaDeFundo = bundle.getString(AromaLibraryActivity.KEY_FUNDO);
-
-
-                System.out.println("TESTE2"+longevidade);
-                aromaOriginal = new Aroma(aromaNome, favorito,Longevidade.valueOf(enumTranslator(longevidade)),Projecao.valueOf(enumTranslator(projecao)),
-                        Genero.valueOf(enumTranslator(genero)),indicacaoAroma, tipoAroma, notaDeSaida, notaDeBase, notaDeFundo) ;
-
-                 */
 
 
                 editTextAroma.setText(aromaOriginal.getNome());
@@ -327,11 +295,11 @@ public class AromaLibraryActivity extends AppCompatActivity {
             return;
         }
 
-        Aroma aromaAlterado = new Aroma(aroma, favorito,Longevidade.valueOf(removerAcentos(enumTranslator(longevidade))),
+        Aroma aromaObj = new Aroma(aroma, favorito,Longevidade.valueOf(removerAcentos(enumTranslator(longevidade))),
                 Projecao.valueOf(enumTranslator(projecao)), Genero.valueOf(enumTranslator(genero)),
                 indicacaoAroma,tipoAroma, notaDeSaida, notaDeBase, notaDeFundo);
 
-        if(aromaAlterado.equals(aromaOriginal)){
+        if(aromaObj.equals(aromaOriginal)){
             // valores não foram alterado, não precisa salvar nada
             setResult(AromasActivity.RESULT_CANCELED);
             finish();
@@ -353,23 +321,32 @@ public class AromaLibraryActivity extends AppCompatActivity {
 
         AromasDatabase database = AromasDatabase.getInstance(this);
 
-        if(modo == MODO_NOVO){
-            long novoId = database.getAromaDao().insert(aromaAlterado);
+        if(modo == MODO_NOVO){ //novo registro
+            long novoId = database.getAromaDao().insert(aromaObj);
 
-            if (novoId<=0)
+            if (novoId<=0){
+                UtilsAlert.mostrarAviso(this,R.string.erro_na_operacao_escrita);
+            return;}
 
-        }else{}
+            aromaObj.setId(novoId);
 
-        intenResposta.putExtra(KEY_AROMA,aroma);
-        intenResposta.putExtra(KEY_FAVORITO,favorito);
-        intenResposta.putExtra(KEY_LONGEVIDADE,enumTranslator(longevidade));
-        intenResposta.putExtra(KEY_PROJECAO,enumTranslator(projecao));
-        intenResposta.putExtra(KEY_GENERO,enumTranslator(genero));
-        intenResposta.putExtra(KEY_INDICACAO,indicacaoAroma);
-        intenResposta.putExtra(KEY_TIPO,tipoAroma);
-        intenResposta.putExtra(KEY_SAIDA,notaDeSaida);
-        intenResposta.putExtra(KEY_BASE,notaDeBase);
-        intenResposta.putExtra(KEY_FUNDO,notaDeFundo);
+        }else{ //update
+
+            aromaObj.setId(aromaOriginal.getId());
+
+            int quantRegistrosAlterados = database.getAromaDao().update(aromaObj);
+
+            if (quantRegistrosAlterados!=1) {
+                UtilsAlert.mostrarAviso(this,R.string.erro_na_operacao_escrita);
+                return;
+            }
+
+
+
+        }
+
+        intenResposta.putExtra(KEY_ID, aromaObj.getId());
+
 
         setResult(AromaLibraryActivity.RESULT_OK, intenResposta);
 

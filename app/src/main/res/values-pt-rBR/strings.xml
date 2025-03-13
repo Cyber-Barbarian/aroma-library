@@ -82,7 +82,7 @@
     <string name="nome_do_aroma">Nome do Aroma: </string>
     <string name="favorito">Favorito: </string>
     <string name="perfume_favorito">&#128153; Aroma entre os favoritos! &#128153;</string>
-    <string name="empty_message"></string>
+    <string name="empty_message">" "</string>
     <string name="foi_selecionado">"Foi selecionado!"</string>
     <string name="separator">-------- AROMA --------</string>
     <string name="logo_da_utfpr">Logo da UTFPR</string>
@@ -110,5 +110,7 @@
     <string name="nao">Não</string>
     <string name="deseja_deletar">Deseja deletar?\n\"%1$s\"</string>
     <string name="do_you_want_to_restore_defaults">Deseja Restaurar Padrões?</string>
+    <string name="erro_na_operacao_escrita">Erro na operação de escrita!</string>
+    <string name="erro_na_operacao_delete">Erro na operação de deleção!</string>
 
 </resources>

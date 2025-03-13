@@ -83,7 +83,7 @@ public class AromaAdapter extends BaseAdapter {
         }
 
         holder.textViewValorIndicacao.setText(aroma.getIndicacao());
-        holder.textViewValorTipoDeAroma.setText(aroma.getIndicacao());
+        holder.textViewValorTipoDeAroma.setText(aroma.getTipoDeAroma());
         holder.textViewValorPiramideOlfativaSaida.setText(aroma.getPiramideOlfativaSaida());
         holder.textViewValorPiramideOlfativaCorpo.setText(aroma.getPiramideOlfativaCorpo());
         holder.textViewValorPiramideOlfativaFundo.setText(aroma.getPiramideOlfativaFundo());
