@@ -27,8 +27,6 @@ public interface AromaDao {
     //Somente nos selects devemos estabelecer a sintaxe, pois são baseados em cláusulas
     @Query("SELECT * FROM aroma WHERE ID =:id")
     Aroma queryForId(long id);
-    @Query("SELECT * FROM aroma WHERE nome=:nome")
-    List<Aroma> queryForName(String nome);
     @Query("SELECT * FROM aroma ORDER BY nome ASC")
     List<Aroma> queryAllAscending();
     @Query("SELECT * FROM aroma ORDER BY nome DESC")
